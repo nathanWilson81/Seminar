@@ -4,6 +4,7 @@ import numpy as np
 from skimage import io, img_as_float
 from scipy import spatial
 from math import sqrt
+import random
 np.set_printoptions(threshold=np.inf)
 
 
@@ -37,6 +38,33 @@ def draw_square2():
     end_fill()
 
 
+def draw_image(x):
+    setup()
+    ts = getscreen()
+    random.randrange(0, 255)
+    setx(random.randrange(0, 255))
+    sety(random.randrange(0, 255))
+    clear()
+    ht()
+    #penup()
+    #home()
+    #pendown()
+    begin_fill()
+    forward(random.randrange(0, 255))
+    right(random.randrange(0, 255))
+    forward(random.randrange(0, 255))
+    right(random.randrange(0, 255))
+    forward(random.randrange(0, 255))
+    right(random.randrange(0, 255))
+    forward(random.randrange(0, 255))
+    right(random.randrange(0, 255))
+    end_fill()
+    can = ts.getcanvas()
+    can.postscript(file=str(x) + ".eps")
+    img = Image.open(str(x) + ".eps")
+    img.save(str(x) + ".png", "png")
+
+
 def eu_distance(x, y):
     return abs(x - y)
 
@@ -51,7 +79,7 @@ print("First image: \n")
 print(arr.shape)
 print(arr.mean())
 img.save("test.png", "png")
-############################# Second Picture Drawing ########################################
+############################# Second Picture Drawing #####################
 reset()
 setup()
 ts = getscreen()
@@ -67,5 +95,8 @@ img1.save("test1.png", "png")
 
 print("\n How close the two images are (smaller better): \n")
 print(eu_distance(arr.mean(), arr1.mean()))
+
+for x in range(0, 200):
+    draw_image(x)
 
 done()
