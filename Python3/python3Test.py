@@ -39,30 +39,28 @@ def draw_square2():
 
 
 def draw_image(x):
-    setup()
     ts = getscreen()
-    random.randrange(0, 255)
-    setx(random.randrange(0, 255))
-    sety(random.randrange(0, 255))
+    #height = random.randrange(0, 128)
+    #width = random.randrange(0, 128)
+    # setx(height)
+    # sety(width)
     clear()
     ht()
-    #penup()
-    #home()
-    #pendown()
-    begin_fill()
-    forward(random.randrange(0, 255))
-    right(random.randrange(0, 255))
-    forward(random.randrange(0, 255))
-    right(random.randrange(0, 255))
-    forward(random.randrange(0, 255))
-    right(random.randrange(0, 255))
-    forward(random.randrange(0, 255))
-    right(random.randrange(0, 255))
-    end_fill()
+    # begin_fill()
+    forward(random.randrange(0, 128))
+    right(random.randrange(0, 360))
+    forward(random.randrange(0, 128))
+    right(random.randrange(0, 360))
+    forward(random.randrange(0, 128))
+    right(random.randrange(0, 360))
+    #forward(random.randrange(0, 128))
+    #right(random.randrange(0, 360))
+    home()
+    # end_fill()
     can = ts.getcanvas()
-    can.postscript(file=str(x) + ".eps")
-    img = Image.open(str(x) + ".eps")
-    img.save(str(x) + ".png", "png")
+    can.postscript(file="Quad" + str(x) + ".eps")
+    img = Image.open("Quad" + str(x) + ".eps")
+    img.save("Quad" + str(x) + ".png", "png")
 
 
 def eu_distance(x, y):
@@ -96,7 +94,7 @@ img1.save("test1.png", "png")
 print("\n How close the two images are (smaller better): \n")
 print(eu_distance(arr.mean(), arr1.mean()))
 
-for x in range(0, 200):
+for x in range(0, 30):
     draw_image(x)
 
 done()
