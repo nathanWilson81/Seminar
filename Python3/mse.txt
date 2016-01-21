@@ -1,0 +1,36 @@
+Testing for Mean Squared Error 
+
+Best MSE for picture 1 was 0.000660246340186 at Y = 6
+Best MSE for picture 2 was 7.58903839295e-05 at Y = 14
+Best MSE for picture 3 was 6.07123071436e-05 at Y = 11
+Best MSE for picture 4 was 7.58903839295e-06 at Y = 5
+Best MSE for picture 5 was 7.58903839295e-06 at Y = 15
+Best MSE for picture 6 was 6.83013455365e-05 at Y = 34
+Best MSE for picture 7 was 6.07123071436e-05 at Y = 22
+Best MSE for picture 8 was 3.79451919647e-05 at Y = 17
+Best MSE for picture 9 was 6.07123071436e-05 at Y = 28
+Best MSE for picture 10 was 3.03561535718e-05 at Y = 23
+Best MSE for picture 11 was 2.27671151788e-05 at Y = 4
+Best MSE for picture 12 was 1 at Y = 4
+Best MSE for picture 13 was 1.51780767859e-05 at Y = 7
+Best MSE for picture 14 was 4.55342303577e-05 at Y = 13
+Best MSE for picture 15 was 6.07123071436e-05 at Y = 21
+Best MSE for picture 16 was 0.00020490403661 at Y = 25
+Best MSE for picture 17 was 0.000151780767859 at Y = 24
+Best MSE for picture 18 was 3.03561535718e-05 at Y = 23
+Best MSE for picture 19 was 0.000235260190181 at Y = 27
+Best MSE for picture 20 was 0.000136602691073 at Y = 16
+Best MSE for picture 21 was 1.51780767859e-05 at Y = 10
+Best MSE for picture 22 was 2.27671151788e-05 at Y = 9
+Best MSE for picture 23 was 9.10684607153e-05 at Y = 20
+Best MSE for picture 24 was 7.58903839295e-06 at Y = 30
+Best MSE for picture 25 was 3.79451919647e-05 at Y = 19
+Best MSE for picture 26 was 0.000235260190181 at Y = 27
+Best MSE for picture 27 was 4.55342303577e-05 at Y = 29
+Best MSE for picture 28 was 2.27671151788e-05 at Y = 8
+Best MSE for picture 29 was 4.55342303577e-05 at Y = 32
+Best MSE for picture 30 was 1.51780767859e-05 at Y = 31
+Best MSE for picture 31 was 3.79451919647e-05 at Y = 3
+Best MSE for picture 32 was 0.00130531460359 at Y = 12
+Best MSE for picture 33 was 7.58903839295e-06 at Y = 2
+Best MSE for picture 34 was 9.10684607153e-05 at Y = 33

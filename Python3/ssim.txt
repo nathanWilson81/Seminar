@@ -1,0 +1,36 @@
+Testing for SSIM
+
+Best SSIM for Test Image 1 was 0.990969095283 at Test Image 7
+Best SSIM for Test Image 2 was 0.987874843675 at Test Image 1
+Best SSIM for Test Image 3 was 0.984238046314 at Test Image 33
+Best SSIM for Test Image 4 was 0.983793967279 at Test Image 6
+Best SSIM for Test Image 5 was 0.982923582779 at Test Image 1
+Best SSIM for Test Image 6 was 0.991059524087 at Test Image 33
+Best SSIM for Test Image 7 was 0.990969095283 at Test Image 1
+Best SSIM for Test Image 8 was 0.985110427459 at Test Image 1
+Best SSIM for Test Image 9 was 0.988464547024 at Test Image 33
+Best SSIM for Test Image 10 was 0.983102597337 at Test Image 4
+Best SSIM for Test Image 11 was 0.981339595821 at Test Image 1
+Best SSIM for Test Image 12 was 0.960437562611 at Test Image 33
+Best SSIM for Test Image 13 was 0.990660108563 at Test Image 6
+Best SSIM for Test Image 14 was 0.988576734275 at Test Image 1
+Best SSIM for Test Image 15 was 0.980698396916 at Test Image 1
+Best SSIM for Test Image 16 was 0.978080671708 at Test Image 1
+Best SSIM for Test Image 17 was 0.983096375111 at Test Image 1
+Best SSIM for Test Image 18 was 0.980885670041 at Test Image 33
+Best SSIM for Test Image 19 was 0.976637751223 at Test Image 1
+Best SSIM for Test Image 20 was 0.975873043758 at Test Image 1
+Best SSIM for Test Image 21 was 0.981612319771 at Test Image 7
+Best SSIM for Test Image 22 was 0.990445194506 at Test Image 6
+Best SSIM for Test Image 23 was 0.981296414666 at Test Image 1
+Best SSIM for Test Image 24 was 0.982075823077 at Test Image 1
+Best SSIM for Test Image 25 was 0.976565118946 at Test Image 33
+Best SSIM for Test Image 26 was 0.975656241689 at Test Image 31
+Best SSIM for Test Image 27 was 0.973490803042 at Test Image 1
+Best SSIM for Test Image 28 was 0.985797292837 at Test Image 33
+Best SSIM for Test Image 29 was 0.973476147035 at Test Image 33
+Best SSIM for Test Image 30 was 0.985521425103 at Test Image 2
+Best SSIM for Test Image 31 was 0.983703374231 at Test Image 1
+Best SSIM for Test Image 32 was 0.974310910937 at Test Image 1
+Best SSIM for Test Image 33 was 0.991059524087 at Test Image 6
+Best SSIM for Test Image 34 was 0.989962928262 at Test Image 1
