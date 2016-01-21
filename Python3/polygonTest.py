@@ -90,13 +90,12 @@ open_tris()
 open_quads()
 to_bitmap()
 testList = tri + quad
-#print (type(testList[0]))
-#print (imgList)
 print("Testing for Mean Squared Error \n")
 test_mse(testList)
-# test_average(testList)
-#print("Testing for SSIM\n")
-# test_ssim()
+print("Testing for Average Distance \n")
+test_average(testList)
+print("Testing for SSIM\n")
+test_ssim()
 
 # for x in range(0, (len(testList))):
 #    print("Image " + str(x) + ": " + str(np.mean(testList[x])))
