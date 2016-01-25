@@ -1,0 +1,78 @@
+Normalized SSIM
+
+[ 1.          0.70129926  0.58815077  0.5532371   0.57932596  0.76162635
+  0.77752551  0.63319843  0.66473888  0.52540379  0.54030477  0.
+  0.68734763  0.71859019  0.52450896  0.46002184  0.58358267  0.50357429
+  0.42447579  0.40563738  0.53502998  0.67361631  0.53924101  0.55844158
+  0.39738643  0.38495061  0.34695137  0.6244198   0.32157368  0.57446819
+  0.59853596  0.36715456  0.73255899  0.7527388   0.93317358]
+The three worst images for Image 1 in order are: 12, 29, 27
+0%, 32%, 34%
+The three worst images for Image 2 in order are: 12, 27, 32
+0%, 13%, 30%
+The three worst images for Image 3 in order are: 12, 27, 20
+0%, 2%, 13%
+The three worst images for Image 4 in order are: 12, 27, 20
+0%, 15%, 16%
+The three worst images for Image 5 in order are: 12, 27, 20
+0%, 17%, 22%
+The three worst images for Image 6 in order are: 12, 27, 20
+0%, 18%, 24%
+The three worst images for Image 7 in order are: 12, 27, 29
+0%, 24%, 29%
+The three worst images for Image 8 in order are: 12, 29, 27
+0%, 25%, 27%
+The three worst images for Image 9 in order are: 12, 27, 20
+0%, 12%, 19%
+The three worst images for Image 10 in order are: 12, 27, 20
+0%, 16%, 18%
+The three worst images for Image 11 in order are: 12, 27, 20
+0%, 18%, 23%
+The three worst images for Image 12 in order are: 27, 20, 15
+0%, 9%, 11%
+The three worst images for Image 13 in order are: 12, 27, 20
+0%, 19%, 24%
+The three worst images for Image 14 in order are: 12, 27, 20
+0%, 12%, 22%
+The three worst images for Image 15 in order are: 12, 29, 26
+0%, 22%, 26%
+The three worst images for Image 16 in order are: 12, 27, 20
+0%, 14%, 18%
+The three worst images for Image 17 in order are: 12, 27, 20
+0%, 13%, 25%
+The three worst images for Image 18 in order are: 12, 27, 15
+0%, 0%, 17%
+The three worst images for Image 19 in order are: 12, 27, 20
+0%, 8%, 19%
+The three worst images for Image 20 in order are: 12, 27, 32
+0%, 18%, 19%
+The three worst images for Image 21 in order are: 12, 27, 20
+0%, 17%, 23%
+The three worst images for Image 22 in order are: 12, 27, 20
+0%, 9%, 16%
+The three worst images for Image 23 in order are: 12, 27, 32
+0%, 13%, 24%
+The three worst images for Image 24 in order are: 12, 27, 32
+0%, 14%, 20%
+The three worst images for Image 25 in order are: 12, 27, 20
+0%, 0%, 12%
+The three worst images for Image 26 in order are: 12, 27, 32
+0%, 12%, 22%
+The three worst images for Image 27 in order are: 12, 29, 26
+0%, 19%, 23%
+The three worst images for Image 28 in order are: 12, 27, 20
+0%, 5%, 21%
+The three worst images for Image 29 in order are: 27, 12, 20
+0%, 9%, 11%
+The three worst images for Image 30 in order are: 12, 27, 20
+0%, 10%, 26%
+The three worst images for Image 31 in order are: 12, 27, 32
+0%, 16%, 25%
+The three worst images for Image 32 in order are: 12, 20, 27
+0%, 15%, 17%
+The three worst images for Image 33 in order are: 12, 27, 20
+0%, 11%, 19%
+The three worst images for Image 34 in order are: 12, 27, 29
+0%, 27%, 28%
+The three worst images for Image 35 in order are: 12, 27, 29
+0%, 32%, 32%

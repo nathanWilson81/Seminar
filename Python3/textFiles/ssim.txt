@@ -1,36 +1,78 @@
-Testing for SSIM
+Normalized SSIM
 
-Best SSIM for Test Image 1 was 0.990969095283 at Test Image 7
-Best SSIM for Test Image 2 was 0.987874843675 at Test Image 1
-Best SSIM for Test Image 3 was 0.984238046314 at Test Image 33
-Best SSIM for Test Image 4 was 0.983793967279 at Test Image 6
-Best SSIM for Test Image 5 was 0.982923582779 at Test Image 1
-Best SSIM for Test Image 6 was 0.991059524087 at Test Image 33
-Best SSIM for Test Image 7 was 0.990969095283 at Test Image 1
-Best SSIM for Test Image 8 was 0.985110427459 at Test Image 1
-Best SSIM for Test Image 9 was 0.988464547024 at Test Image 33
-Best SSIM for Test Image 10 was 0.983102597337 at Test Image 4
-Best SSIM for Test Image 11 was 0.981339595821 at Test Image 1
-Best SSIM for Test Image 12 was 0.960437562611 at Test Image 33
-Best SSIM for Test Image 13 was 0.990660108563 at Test Image 6
-Best SSIM for Test Image 14 was 0.988576734275 at Test Image 1
-Best SSIM for Test Image 15 was 0.980698396916 at Test Image 1
-Best SSIM for Test Image 16 was 0.978080671708 at Test Image 1
-Best SSIM for Test Image 17 was 0.983096375111 at Test Image 1
-Best SSIM for Test Image 18 was 0.980885670041 at Test Image 33
-Best SSIM for Test Image 19 was 0.976637751223 at Test Image 1
-Best SSIM for Test Image 20 was 0.975873043758 at Test Image 1
-Best SSIM for Test Image 21 was 0.981612319771 at Test Image 7
-Best SSIM for Test Image 22 was 0.990445194506 at Test Image 6
-Best SSIM for Test Image 23 was 0.981296414666 at Test Image 1
-Best SSIM for Test Image 24 was 0.982075823077 at Test Image 1
-Best SSIM for Test Image 25 was 0.976565118946 at Test Image 33
-Best SSIM for Test Image 26 was 0.975656241689 at Test Image 31
-Best SSIM for Test Image 27 was 0.973490803042 at Test Image 1
-Best SSIM for Test Image 28 was 0.985797292837 at Test Image 33
-Best SSIM for Test Image 29 was 0.973476147035 at Test Image 33
-Best SSIM for Test Image 30 was 0.985521425103 at Test Image 2
-Best SSIM for Test Image 31 was 0.983703374231 at Test Image 1
-Best SSIM for Test Image 32 was 0.974310910937 at Test Image 1
-Best SSIM for Test Image 33 was 0.991059524087 at Test Image 6
-Best SSIM for Test Image 34 was 0.989962928262 at Test Image 1
+[ 1.          0.70129926  0.58815077  0.5532371   0.57932596  0.76162635
+  0.77752551  0.63319843  0.66473888  0.52540379  0.54030477  0.
+  0.68734763  0.71859019  0.52450896  0.46002184  0.58358267  0.50357429
+  0.42447579  0.40563738  0.53502998  0.67361631  0.53924101  0.55844158
+  0.39738643  0.38495061  0.34695137  0.6244198   0.32157368  0.57446819
+  0.59853596  0.36715456  0.73255899  0.7527388   0.93317358]
+The three best images for Image 1 in order are: 35, 7, 6
+93%, 77%, 76%
+The three best images for Image 2 in order are: 35, 1, 6
+73%, 71%, 68%
+The three best images for Image 3 in order are: 35, 33, 14
+63%, 62%, 62%
+The three best images for Image 4 in order are: 6, 33, 10
+65%, 64%, 64%
+The three best images for Image 5 in order are: 1, 35, 6
+65%, 65%, 64%
+The three best images for Image 6 in order are: 33, 35, 13
+78%, 77%, 77%
+The three best images for Image 7 in order are: 35, 1, 6
+80%, 79%, 68%
+The three best images for Image 8 in order are: 35, 1, 6
+71%, 70%, 62%
+The three best images for Image 9 in order are: 33, 6, 22
+73%, 72%, 71%
+The three best images for Image 10 in order are: 4, 6, 33
+65%, 65%, 62%
+The three best images for Image 11 in order are: 35, 1, 6
+65%, 64%, 59%
+The three best images for Image 12 in order are: 33, 35, 1
+39%, 39%, 37%
+The three best images for Image 13 in order are: 6, 35, 1
+78%, 72%, 71%
+The three best images for Image 14 in order are: 35, 1, 6
+74%, 72%, 71%
+The three best images for Image 15 in order are: 35, 1, 6
+67%, 66%, 54%
+The three best images for Image 16 in order are: 1, 35, 6
+59%, 58%, 57%
+The three best images for Image 17 in order are: 35, 1, 14
+67%, 65%, 62%
+The three best images for Image 18 in order are: 33, 35, 28
+57%, 57%, 56%
+The three best images for Image 19 in order are: 35, 1, 6
+57%, 55%, 55%
+The three best images for Image 20 in order are: 35, 1, 18
+62%, 59%, 50%
+The three best images for Image 21 in order are: 35, 7, 1
+64%, 64%, 63%
+The three best images for Image 22 in order are: 6, 33, 9
+76%, 73%, 70%
+The three best images for Image 23 in order are: 35, 1, 2
+64%, 62%, 57%
+The three best images for Image 24 in order are: 35, 1, 7
+65%, 64%, 53%
+The three best images for Image 25 in order are: 33, 35, 1
+52%, 52%, 50%
+The three best images for Image 26 in order are: 35, 31, 1
+57%, 57%, 56%
+The three best images for Image 27 in order are: 1, 35, 6
+59%, 59%, 49%
+The three best images for Image 28 in order are: 33, 35, 14
+66%, 66%, 65%
+The three best images for Image 29 in order are: 33, 35, 1
+49%, 49%, 47%
+The three best images for Image 30 in order are: 2, 35, 1
+69%, 65%, 63%
+The three best images for Image 31 in order are: 35, 1, 2
+68%, 67%, 61%
+The three best images for Image 32 in order are: 1, 35, 33
+53%, 53%, 53%
+The three best images for Image 33 in order are: 6, 35, 1
+77%, 74%, 72%
+The three best images for Image 34 in order are: 1, 35, 6
+78%, 77%, 68%
+The three best images for Image 35 in order are: 1, 7, 6
+93%, 78%, 76%

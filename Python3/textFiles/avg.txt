@@ -1,36 +1,78 @@
-Testing for Average Distance 
+Normalized Avg
 
-Best distance for picture 1 was 0.000660246340186 at Y = 6
-Best distance for picture 2 was 7.58903839293e-06 at Y = 33
-Best distance for picture 3 was 3.79451919648e-05 at Y = 31
-Best distance for picture 4 was 7.58903839293e-06 at Y = 5
-Best distance for picture 5 was 7.58903839293e-06 at Y = 4
-Best distance for picture 6 was 6.83013455365e-05 at Y = 34
-Best distance for picture 7 was 1.51780767859e-05 at Y = 13
-Best distance for picture 8 was 2.27671151788e-05 at Y = 28
-Best distance for picture 9 was 2.27671151789e-05 at Y = 22
-Best distance for picture 10 was 1.51780767859e-05 at Y = 21
-Best distance for picture 11 was 2.27671151788e-05 at Y = 4
-Best distance for picture 12 was 0.00130531460359 at Y = 32
-Best distance for picture 13 was 1.51780767859e-05 at Y = 7
-Best distance for picture 14 was 4.55342303577e-05 at Y = 13
-Best distance for picture 15 was 7.58903839293e-06 at Y = 5
-Best distance for picture 16 was 0.000136602691073 at Y = 20
-Best distance for picture 17 was 3.79451919648e-05 at Y = 8
-Best distance for picture 18 was 1.51780767859e-05 at Y = 21
-Best distance for picture 19 was 3.79451919648e-05 at Y = 25
-Best distance for picture 20 was 9.10684607154e-05 at Y = 23
-Best distance for picture 21 was 1.51780767859e-05 at Y = 10
-Best distance for picture 22 was 2.27671151789e-05 at Y = 9
-Best distance for picture 23 was 3.03561535717e-05 at Y = 10
-Best distance for picture 24 was 7.58903839293e-06 at Y = 30
-Best distance for picture 25 was 3.79451919648e-05 at Y = 19
-Best distance for picture 26 was 3.79451919648e-05 at Y = 25
-Best distance for picture 27 was 4.55342303577e-05 at Y = 29
-Best distance for picture 28 was 2.27671151788e-05 at Y = 8
-Best distance for picture 29 was 4.55342303577e-05 at Y = 27
-Best distance for picture 30 was 7.58903839293e-06 at Y = 24
-Best distance for picture 31 was 1.51780767859e-05 at Y = 30
-Best distance for picture 32 was 4.55342303577e-05 at Y = 29
-Best distance for picture 33 was 7.58903839293e-06 at Y = 2
-Best distance for picture 34 was 6.83013455365e-05 at Y = 6
+[ 0.          0.22427984  0.3744856   0.39711934  0.39917695  0.17901235
+  0.26131687  0.30658436  0.28395062  0.4218107   0.3909465   1.
+  0.25720165  0.24485597  0.40123457  0.49176955  0.31687243  0.4218107
+  0.55761317  0.45473251  0.41769547  0.27777778  0.43004115  0.35802469
+  0.5473251   0.55761317  0.62139918  0.30041152  0.63374486  0.3600823
+  0.36419753  0.64609053  0.22222222  0.19753086  0.08641975]
+The three best images for Image 1 in order are: 35, 6, 34
+92%, 83%, 81%
+The three best images for Image 2 in order are: 33, 14, 34
+100%, 98%, 97%
+The three best images for Image 3 in order are: 31, 30, 24
+99%, 98%, 98%
+The three best images for Image 4 in order are: 5, 15, 11
+100%, 100%, 99%
+The three best images for Image 5 in order are: 4, 15, 11
+100%, 100%, 99%
+The three best images for Image 6 in order are: 34, 33, 2
+98%, 95%, 95%
+The three best images for Image 7 in order are: 13, 22, 14
+100%, 98%, 98%
+The three best images for Image 8 in order are: 28, 17, 9
+100%, 99%, 97%
+The three best images for Image 9 in order are: 22, 28, 8
+100%, 98%, 97%
+The three best images for Image 10 in order are: 10, 21, 23
+100%, 100%, 99%
+The three best images for Image 11 in order are: 4, 5, 15
+99%, 99%, 99%
+The three best images for Image 12 in order are: 32, 29, 27
+68%, 67%, 66%
+The three best images for Image 13 in order are: 7, 14, 22
+100%, 99%, 98%
+The three best images for Image 14 in order are: 13, 7, 2
+99%, 98%, 98%
+The three best images for Image 15 in order are: 5, 4, 11
+100%, 100%, 99%
+The three best images for Image 16 in order are: 20, 25, 23
+94%, 91%, 90%
+The three best images for Image 17 in order are: 8, 28, 9
+99%, 98%, 96%
+The three best images for Image 18 in order are: 10, 21, 23
+100%, 100%, 99%
+The three best images for Image 19 in order are: 26, 25, 27
+100%, 99%, 91%
+The three best images for Image 20 in order are: 23, 18, 10
+96%, 94%, 94%
+The three best images for Image 21 in order are: 18, 10, 23
+100%, 100%, 98%
+The three best images for Image 22 in order are: 9, 7, 13
+100%, 98%, 98%
+The three best images for Image 23 in order are: 18, 10, 21
+99%, 99%, 98%
+The three best images for Image 24 in order are: 30, 31, 3
+100%, 100%, 98%
+The three best images for Image 25 in order are: 19, 26, 16
+99%, 99%, 92%
+The three best images for Image 26 in order are: 26, 25, 27
+100%, 99%, 91%
+The three best images for Image 27 in order are: 29, 32, 19
+99%, 97%, 91%
+The three best images for Image 28 in order are: 8, 9, 17
+100%, 98%, 98%
+The three best images for Image 29 in order are: 32, 27, 19
+99%, 99%, 90%
+The three best images for Image 30 in order are: 24, 31, 3
+100%, 100%, 98%
+The three best images for Image 31 in order are: 30, 24, 3
+100%, 100%, 99%
+The three best images for Image 32 in order are: 29, 27, 19
+99%, 97%, 88%
+The three best images for Image 33 in order are: 2, 14, 34
+100%, 98%, 97%
+The three best images for Image 34 in order are: 6, 33, 2
+98%, 97%, 97%
+The three best images for Image 35 in order are: 1, 6, 34
+93%, 76%, 74%

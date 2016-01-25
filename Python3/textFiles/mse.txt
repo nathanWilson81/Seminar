@@ -1,36 +1,78 @@
-Testing for Mean Squared Error 
+Normalized MSE
 
-Best MSE for picture 1 was 0.000660246340186 at Y = 6
-Best MSE for picture 2 was 7.58903839295e-05 at Y = 14
-Best MSE for picture 3 was 6.07123071436e-05 at Y = 11
-Best MSE for picture 4 was 7.58903839295e-06 at Y = 5
-Best MSE for picture 5 was 7.58903839295e-06 at Y = 15
-Best MSE for picture 6 was 6.83013455365e-05 at Y = 34
-Best MSE for picture 7 was 6.07123071436e-05 at Y = 22
-Best MSE for picture 8 was 3.79451919647e-05 at Y = 17
-Best MSE for picture 9 was 6.07123071436e-05 at Y = 28
-Best MSE for picture 10 was 3.03561535718e-05 at Y = 23
-Best MSE for picture 11 was 2.27671151788e-05 at Y = 4
-Best MSE for picture 12 was 1 at Y = 4
-Best MSE for picture 13 was 1.51780767859e-05 at Y = 7
-Best MSE for picture 14 was 4.55342303577e-05 at Y = 13
-Best MSE for picture 15 was 6.07123071436e-05 at Y = 21
-Best MSE for picture 16 was 0.00020490403661 at Y = 25
-Best MSE for picture 17 was 0.000151780767859 at Y = 24
-Best MSE for picture 18 was 3.03561535718e-05 at Y = 23
-Best MSE for picture 19 was 0.000235260190181 at Y = 27
-Best MSE for picture 20 was 0.000136602691073 at Y = 16
-Best MSE for picture 21 was 1.51780767859e-05 at Y = 10
-Best MSE for picture 22 was 2.27671151788e-05 at Y = 9
-Best MSE for picture 23 was 9.10684607153e-05 at Y = 20
-Best MSE for picture 24 was 7.58903839295e-06 at Y = 30
-Best MSE for picture 25 was 3.79451919647e-05 at Y = 19
-Best MSE for picture 26 was 0.000235260190181 at Y = 27
-Best MSE for picture 27 was 4.55342303577e-05 at Y = 29
-Best MSE for picture 28 was 2.27671151788e-05 at Y = 8
-Best MSE for picture 29 was 4.55342303577e-05 at Y = 32
-Best MSE for picture 30 was 1.51780767859e-05 at Y = 31
-Best MSE for picture 31 was 3.79451919647e-05 at Y = 3
-Best MSE for picture 32 was 0.00130531460359 at Y = 12
-Best MSE for picture 33 was 7.58903839295e-06 at Y = 2
-Best MSE for picture 34 was 9.10684607153e-05 at Y = 33
+[ 0.          0.3120438   0.44525547  0.46532847  0.46350365  0.26824818
+  0.33759124  0.3850365   0.3649635   0.48722628  0.45985401  1.
+  0.33759124  0.33029197  0.48357664  0.53467153  0.39416058  0.48722628
+  0.60766423  0.55291971  0.48357664  0.35583942  0.49452555  0.43065693
+  0.59854015  0.60766423  0.66058394  0.37956204  0.67518248  0.43248175
+  0.43613139  0.67883212  0.30656934  0.27737226  0.07664234]
+The three best images for Image 1 in order are: 35, 6, 34
+93%, 74%, 73%
+The three best images for Image 2 in order are: 35, 1, 6
+74%, 71%, 69%
+The three best images for Image 3 in order are: 35, 33, 22
+61%, 61%, 60%
+The three best images for Image 4 in order are: 35, 33, 6
+63%, 62%, 62%
+The three best images for Image 5 in order are: 35, 1, 6
+65%, 62%, 61%
+The three best images for Image 6 in order are: 35, 1, 22
+77%, 73%, 72%
+The three best images for Image 7 in order are: 35, 1, 6
+74%, 72%, 63%
+The three best images for Image 8 in order are: 35, 1, 6
+73%, 70%, 58%
+The three best images for Image 9 in order are: 35, 6, 33
+70%, 69%, 67%
+The three best images for Image 10 in order are: 35, 6, 1
+63%, 62%, 59%
+The three best images for Image 11 in order are: 35, 1, 6
+66%, 63%, 60%
+The three best images for Image 12 in order are: 35, 33, 22
+40%, 39%, 38%
+The three best images for Image 13 in order are: 6, 35, 1
+74%, 72%, 69%
+The three best images for Image 14 in order are: 35, 6, 1
+72%, 70%, 68%
+The three best images for Image 15 in order are: 35, 1, 6
+69%, 66%, 54%
+The three best images for Image 16 in order are: 35, 1, 6
+60%, 58%, 58%
+The three best images for Image 17 in order are: 35, 1, 6
+70%, 66%, 63%
+The three best images for Image 18 in order are: 35, 33, 22
+60%, 59%, 58%
+The three best images for Image 19 in order are: 35, 6, 1
+57%, 55%, 54%
+The three best images for Image 20 in order are: 35, 1, 18
+67%, 62%, 52%
+The three best images for Image 21 in order are: 35, 1, 6
+65%, 62%, 59%
+The three best images for Image 22 in order are: 6, 33, 35
+72%, 68%, 68%
+The three best images for Image 23 in order are: 35, 1, 6
+65%, 62%, 57%
+The three best images for Image 24 in order are: 35, 1, 6
+70%, 67%, 56%
+The three best images for Image 25 in order are: 35, 33, 6
+55%, 54%, 53%
+The three best images for Image 26 in order are: 35, 1, 6
+59%, 57%, 52%
+The three best images for Image 27 in order are: 35, 1, 6
+61%, 59%, 47%
+The three best images for Image 28 in order are: 35, 33, 6
+67%, 67%, 65%
+The three best images for Image 29 in order are: 35, 33, 6
+51%, 50%, 49%
+The three best images for Image 30 in order are: 2, 35, 1
+70%, 66%, 63%
+The three best images for Image 31 in order are: 35, 1, 6
+69%, 66%, 58%
+The three best images for Image 32 in order are: 35, 6, 33
+53%, 51%, 51%
+The three best images for Image 33 in order are: 35, 6, 1
+72%, 71%, 69%
+The three best images for Image 34 in order are: 35, 1, 6
+78%, 76%, 64%
+The three best images for Image 35 in order are: 1, 6, 34
+93%, 76%, 74%
