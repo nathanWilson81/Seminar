@@ -3,13 +3,13 @@ import pytest
 
 
 class Triangle:
-    def __init__(self, name):
+    def __init__(self, name,xLen,yLen,yAngle):
         self.name = name
-        self.xLen = 0
-        self.yLen = 0
+        self.xLen = xLen
+        self.yLen = yLen
         self.zLen = 0
         self.xAngle = 0
-        self.yAngle = 0
+        self.yAngle = yAngle
         self.zAngle = 0
         self.perimeter = 0
         print(self.name)
@@ -36,10 +36,7 @@ class Triangle:
 
 
 def main():
-    t = Triangle('Test Triangle')
-    t.xLen = 85
-    t.yLen = 90
-    t.yAngle = 110
+    t = Triangle('Test Triangle',85,90,110)
     print("Length of the Z side is: " + str(t.findZLen()))
     print("Perimeter of the triangle is: " + str(t.findPerimeter()))
     print("Z Angle is: " + str(t.findZAngle()))

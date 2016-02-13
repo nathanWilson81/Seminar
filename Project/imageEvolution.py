@@ -1,51 +1,87 @@
 import random
-import numpy as np
-from turtle import *
-from deap import gp
-from deap import algorithms
-from deap import tools
-from deap import base
-from deap import creator
+
+class Individual:
+    def __init__(self,commands,arguments):
+        self.progString = []
+        self.commandList = commands
+        self.argumentList = arguments
+        print("The commands are " + str(self.commandList))
+        print("The arguments are " + str(self.argumentList))
+
+    def map_string(self):
+        for x in range(0,len(self.argumentList)):
+            self.progString.append('%s(%s)' % (self.commandList[x],self.argumentList[x]))
+        print (self.progString)
+
+class Generator:
+    def __init__(self,minCommands,maxCommands):
+        self.commands = []
+        self.arguments = []
+        ########## CONSTANTS FOR GENERATION ####################
+        self.MAX_DIRECTION_COMMAND_VALUE = 50
+        self.MIN_DIRECTION_COMMAND_VALUE = 1
+        self.MAX_ANGLE_COMMAND_VALUE = 360
+        self.MIN_ANGLE_COMMAND_VALUE = 1
+        ########## INITIALIZATION ARGUMENTS ####################
+        self.maxComCount = maxCommands
+        self.minComCount = minCommands
 
 
-def drawForward(distance):
-    return "forward(" + str(distance) + ")"
+    def generate(self):
+        argDict = {'1':'forward','2':'right','3':'home'} #dictionary for arguments
+        comAmount = random.randint(self.minComCount,self.maxComCount)
+        for x in range (0,comAmount):
+            #arg = random.randrange(1,3)
+            com = random.choice(list(argDict.values()))
+            self.commands.append(com)
+            if com == 'forward':
+                self.arguments.append(random.randrange(self.MIN_DIRECTION_COMMAND_VALUE,self.MAX_DIRECTION_COMMAND_VALUE))
+            elif com == 'right':
+                self.arguments.append(random.randrange(self.MIN_ANGLE_COMMAND_VALUE,self.MAX_ANGLE_COMMAND_VALUE))
+            else:
+                self.arguments.append('0')
+        #print (self.commands)
+        #print (self.arguments)
+        return self.commands,self.arguments
+
+class Parser:
+    def __init__(self,commands,arguments):
+        self.commandList = commands
+        self.argumentList = arguments
+        self.progList = []
 
 
-def turnRight(degrees):
-    return "right(" + str(degrees) + ")"
+    def combine(self):
+        for x in range(0,len(self.commandList)):
+            self.progList.append(self.commandList[x])
+            self.progList.append(str(self.argumentList[x]))
+        #print(self.progList)
+        self.remove0()
+        self.format_list()
 
+    def remove0(self):
+        homeCount = self.progList.count('0')
+        if homeCount > 0:
+            for x in range(0,homeCount):
+                self.progList.remove('0')
+        #print("The amount of 0s is: "+str(homeCount))
 
-def turnLeft(degrees):
-    return "left(" + str(degrees) + ")"
-
-
-def returnToHome():
-    return "home()"
-
-pset = gp.PrimitiveSet("MAIN", 0)
-pset.addPrimitive(forward, 2)
-pset.addPrimitive(right, 2)
-pset.addPrimitive(left, 2)
-pset.addPrimitive(home, 1)
-pset.addEphemeralConstant("rand90", lambda: random.randrange(1, 360))
-
-
-creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
-creator.create("Individual", gp.PrimitiveTree, fitness=creator.FitnessMin)
-
-toolbox = base.Toolbox()
-toolbox.register("expr", gp.genFull, pset=pset, min_=0, max_=1)
-toolbox.register(
-    "individual", tools.initRepeat, creator.Individual, toolbox.expr)
+    def format_list(self):
+        mystring = " ".join(self.progList)
+        print(mystring)
 
 
 def main():
-    # random.seed(3)
-    # setup()
-    expr = gp.genHalfAndHalf(pset=pset, min_=1, max_=2)
-    tree = gp.PrimitiveTree(expr)
-    print(tree)
+    #argDict = {'1':'forward','2':'right','3':'home'}
+    #commands = [argDict['1'],argDict['2'],argDict['1'],argDict['3']]
+    #arguments = [50,90,50]
+    #a = Individual(commands,arguments)
+    #a.map_string()
+    for x in range(0,100):
+        g = Generator(4,4)
+        commands,arguments = g.generate()
+        p = Parser(commands,arguments)
+        p.combine()
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,11 @@
+Program Flow
+
+Create Individuals (Programs(Consists of commands and arguments))
+Parse Individuals (Map commands to arguments)
+Evaluate generated program strings (Compare to goal polygon drawing (Shape/Size/Angles))
+Render best program to screen
+Make copies of Individuals for mutation
+Throw out bottom 10
+Mutate/Crossover Individuals 
+Generate 10 new Individuals to replace bottom 10
+Go back to parsing and repeat until goal program is found 
