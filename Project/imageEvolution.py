@@ -1,6 +1,24 @@
 import random
 
 
+
+class Program(object):
+    def __init__(self,genome):
+        self.genome = genome #Linked List to define the genome
+        self.fitness = 0
+        self.size = 0 
+
+    def getFitness(self):
+        print("Not implemented yet")
+
+    def getSize(self):
+        print("Not yet implemented")
+
+    def toString(self):
+        print("Not yet implemented")
+
+
+
 class Node(object):
     def __init__(self, data=None, next_node=None):
         self.data = data
@@ -60,6 +78,22 @@ class LinkedList(object):
         else:
             previous.set_next(current.get_next())
 
+    def printList(self):
+        current = self.head
+        while current:
+            print(current.get_data())
+            current = current.get_next()
+
+    def toString(self):
+        progList = []
+        current = self.head
+        while current:
+            progList.append(current.get_data())
+            current = current.get_next()
+        progString = "\n".join(progList)
+        return progString
+
+
 
 class Individual:
     def __init__(self, commands, arguments):
@@ -81,9 +115,9 @@ class Generator:
         self.commands = []
         self.arguments = []
         ########## CONSTANTS FOR GENERATION ####################
-        self.MAX_DIRECTION_COMMAND_VALUE = 50
-        self.MIN_DIRECTION_COMMAND_VALUE = 1
-        self.MAX_ANGLE_COMMAND_VALUE = 360
+        self.MAX_DIRECTION_COMMAND_VALUE = 150
+        self.MIN_DIRECTION_COMMAND_VALUE = 50
+        self.MAX_ANGLE_COMMAND_VALUE = 178
         self.MIN_ANGLE_COMMAND_VALUE = 1
         ########## INITIALIZATION ARGUMENTS ####################
         self.maxComCount = maxCommands
@@ -109,6 +143,17 @@ class Generator:
         #print (self.arguments)
         return self.commands, self.arguments
 
+    def genTriangle(self):
+        #argDict = {'1': 'forward', '2': 'right', '3': 'home'}
+        genome = LinkedList()
+        genome.insert("home()")
+        i = random.randrange(self.MIN_DIRECTION_COMMAND_VALUE, self.MAX_DIRECTION_COMMAND_VALUE)
+        genome.insert("forward(" + str(i)+")")
+        i = random.randrange(self.MIN_ANGLE_COMMAND_VALUE, self.MAX_ANGLE_COMMAND_VALUE)
+        genome.insert("right("+str(i)+")")
+        i = random.randrange(self.MIN_DIRECTION_COMMAND_VALUE, self.MAX_DIRECTION_COMMAND_VALUE)
+        genome.insert("forward(" + str(i)+")")
+        return genome
 
 class Parser:
     def __init__(self, commands, arguments):
@@ -137,16 +182,13 @@ class Parser:
 
 
 def main():
-    #argDict = {'1':'forward','2':'right','3':'home'}
-    #commands = [argDict['1'],argDict['2'],argDict['1'],argDict['3']]
-    #arguments = [50,90,50]
-    #a = Individual(commands,arguments)
-    # a.map_string()
-    for x in range(0, 100):
-        g = Generator(4, 4)
-        commands, arguments = g.generate()
-        p = Parser(commands, arguments)
-        p.combine()
+    for x in range(0,100):
+        print("Program " +str(x+1))
+        gen = Generator(4,4)
+        print (gen.genTriangle().toString())
+        print("\n******************************************\n")
+
+
 
 if __name__ == "__main__":
     main()
