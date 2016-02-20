@@ -3,6 +3,9 @@ import random
 
 
 class Program(object):
+    """ Genome representation for the Genetic Algorithm
+    """
+
     def __init__(self,genome):
         self.genome = genome #Linked List to define the genome
         self.fitness = 0
@@ -20,6 +23,7 @@ class Program(object):
 
 
 class Node(object):
+    """Standard Node object of a Linked List"""
     def __init__(self, data=None, next_node=None):
         self.data = data
         self.next_node = next_node
@@ -35,6 +39,7 @@ class Node(object):
 
 
 class LinkedList(object):
+    """Linked List Data Structure"""
     def __init__(self, head=None):
         self.head = head
 
@@ -111,6 +116,7 @@ class Individual:
 
 
 class Generator:
+    """Used to generate Programs from a set of rules"""
     def __init__(self, minCommands, maxCommands):
         self.commands = []
         self.arguments = []
@@ -156,6 +162,7 @@ class Generator:
         return genome
 
 class Parser:
+    """Used to Parse the generated Programs"""
     def __init__(self, commands, arguments):
         self.commandList = commands
         self.argumentList = arguments
