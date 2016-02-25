@@ -1,900 +1,1300 @@
 Program 1
-forward(56)
-right(97)
-forward(131)
+
+forward(100)
+right(101)
+forward(89)
 home()
-None
+
+Perimeter is: 234.20302332555588 pixels
+Area is: 29369.471398816644 pixels
+Ratio of perimeter to area is: 0.00797436971695011
 
 ******************************************
 
 Program 2
-forward(107)
-right(165)
-forward(134)
+
+forward(64)
+right(171)
+forward(142)
 home()
-None
+
+Perimeter is: 348.654290629407 pixels
+Area is: 64999.82655408078 pixels
+Ratio of perimeter to area is: 0.005363926476624083
 
 ******************************************
 
 Program 3
-forward(78)
-right(1)
-forward(81)
+
+forward(135)
+right(154)
+forward(71)
 home()
-None
+
+Perimeter is: 411.9106956611789 pixels
+Area is: 89500.47154597088 pixels
+Ratio of perimeter to area is: 0.004602329893307945
 
 ******************************************
 
 Program 4
-forward(75)
-right(134)
-forward(50)
+
+forward(89)
+right(51)
+forward(83)
 home()
-None
+
+Perimeter is: 234.0114013409887 pixels
+Area is: 29688.528718062542 pixels
+Ratio of perimeter to area is: 0.007882216177274418
 
 ******************************************
 
 Program 5
-forward(114)
-right(140)
-forward(80)
+
+forward(53)
+right(129)
+forward(52)
 home()
-None
+
+Perimeter is: 209.50288819378835 pixels
+Area is: 23286.01088523919 pixels
+Ratio of perimeter to area is: 0.008996941950524919
 
 ******************************************
 
 Program 6
-forward(64)
-right(23)
-forward(102)
+
+forward(138)
+right(93)
+forward(106)
 home()
-None
+
+Perimeter is: 388.89066881045034 pixels
+Area is: 82065.42827988676 pixels
+Ratio of perimeter to area is: 0.0047387880251368005
 
 ******************************************
 
 Program 7
-forward(127)
-right(20)
-forward(77)
+
+forward(53)
+right(90)
+forward(125)
 home()
-None
+
+Perimeter is: 334.11206043644256 pixels
+Area is: 59126.93370694443 pixels
+Ratio of perimeter to area is: 0.005650759129374593
 
 ******************************************
 
 Program 8
-forward(71)
-right(158)
-forward(73)
+
+forward(105)
+right(136)
+forward(79)
 home()
-None
+
+Perimeter is: 349.61453829069563 pixels
+Area is: 65255.984827216904 pixels
+Ratio of perimeter to area is: 0.005357585809430291
 
 ******************************************
 
 Program 9
-forward(79)
-right(28)
-forward(92)
+
+forward(112)
+right(133)
+forward(88)
 home()
-None
+
+Perimeter is: 302.6307887108327 pixels
+Area is: 49763.86299805475 pixels
+Ratio of perimeter to area is: 0.006081336344862584
 
 ******************************************
 
 Program 10
-forward(116)
-right(101)
-forward(84)
+
+forward(149)
+right(25)
+forward(109)
 home()
-None
+
+Perimeter is: 301.42522613701226 pixels
+Area is: 47759.42368407215 pixels
+Ratio of perimeter to area is: 0.00631132461168157
 
 ******************************************
 
 Program 11
-forward(51)
-right(81)
-forward(81)
+
+forward(111)
+right(48)
+forward(106)
 home()
-None
+
+Perimeter is: 413.5219494010509 pixels
+Area is: 91368.32320698217 pixels
+Ratio of perimeter to area is: 0.004525878716897045
 
 ******************************************
 
 Program 12
-forward(117)
-right(158)
-forward(81)
+
+forward(104)
+right(107)
+forward(147)
 home()
-None
+
+Perimeter is: 299.73942448888414 pixels
+Area is: 47426.76735062996 pixels
+Ratio of perimeter to area is: 0.0063200475434660374
 
 ******************************************
 
 Program 13
-forward(148)
-right(174)
-forward(65)
+
+forward(57)
+right(34)
+forward(147)
 home()
-None
+
+Perimeter is: 401.682423763066 pixels
+Area is: 84813.61108204849 pixels
+Ratio of perimeter to area is: 0.004736060859081679
 
 ******************************************
 
 Program 14
-forward(72)
-right(163)
-forward(88)
+
+forward(56)
+right(7)
+forward(67)
 home()
-None
+
+Perimeter is: 167.3589617034466 pixels
+Area is: 15167.629387735178 pixels
+Ratio of perimeter to area is: 0.011033956422931595
 
 ******************************************
 
 Program 15
-forward(70)
-right(171)
-forward(121)
+
+forward(55)
+right(114)
+forward(148)
 home()
-None
+
+Perimeter is: 324.8326903073886 pixels
+Area is: 56092.7125554549 pixels
+Ratio of perimeter to area is: 0.0057909962900483634
 
 ******************************************
 
 Program 16
-forward(128)
-right(78)
-forward(124)
+
+forward(121)
+right(44)
+forward(61)
 home()
-None
+
+Perimeter is: 242.01927255259582 pixels
+Area is: 31063.497076090527 pixels
+Ratio of perimeter to area is: 0.007791114823928735
 
 ******************************************
 
 Program 17
-forward(145)
-right(81)
-forward(102)
+
+forward(78)
+right(112)
+forward(74)
 home()
-None
+
+Perimeter is: 231.34918183759223 pixels
+Area is: 29129.21319421959 pixels
+Ratio of perimeter to area is: 0.007942170641378712
 
 ******************************************
 
 Program 18
-forward(74)
-right(20)
-forward(107)
+
+forward(61)
+right(86)
+forward(70)
 home()
-None
+
+Perimeter is: 240.07696695393943 pixels
+Area is: 30949.49106755182 pixels
+Ratio of perimeter to area is: 0.007757057020095617
 
 ******************************************
 
 Program 19
-forward(114)
-right(59)
-forward(122)
+
+forward(62)
+right(73)
+forward(124)
 home()
-None
+
+Perimeter is: 360.75611358537134 pixels
+Area is: 68892.56008732643 pixels
+Ratio of perimeter to area is: 0.005236503232396737
 
 ******************************************
 
 Program 20
-forward(81)
-right(64)
-forward(80)
+
+forward(98)
+right(18)
+forward(84)
 home()
-None
+
+Perimeter is: 258.0824928315934 pixels
+Area is: 36179.656089321536 pixels
+Ratio of perimeter to area is: 0.007133359482313232
 
 ******************************************
 
 Program 21
-forward(142)
-right(69)
-forward(137)
+
+forward(55)
+right(74)
+forward(123)
 home()
-None
+
+Perimeter is: 303.81996806957784 pixels
+Area is: 49326.916413973224 pixels
+Ratio of perimeter to area is: 0.006159314024817338
 
 ******************************************
 
 Program 22
-forward(62)
-right(160)
-forward(142)
+
+forward(81)
+right(23)
+forward(136)
 home()
-None
+
+Perimeter is: 408.82381787459406 pixels
+Area is: 89075.72272256727 pixels
+Ratio of perimeter to area is: 0.004589621115372874
 
 ******************************************
 
 Program 23
-forward(113)
-right(43)
-forward(94)
+
+forward(143)
+right(50)
+forward(104)
 home()
-None
+
+Perimeter is: 297.6265784793974 pixels
+Area is: 46914.6943405642 pixels
+Ratio of perimeter to area is: 0.006343994832809947
 
 ******************************************
 
 Program 24
-forward(125)
-right(138)
-forward(98)
+
+forward(57)
+right(52)
+forward(75)
 home()
-None
+
+Perimeter is: 233.32902435039665 pixels
+Area is: 29323.34555012186 pixels
+Ratio of perimeter to area is: 0.007957107893830586
 
 ******************************************
 
 Program 25
-forward(64)
-right(24)
-forward(62)
+
+forward(116)
+right(14)
+forward(113)
 home()
-None
+
+Perimeter is: 379.4669302121348 pixels
+Area is: 78106.90392462013 pixels
+Ratio of perimeter to area is: 0.004858302034073108
 
 ******************************************
 
 Program 26
-forward(108)
-right(123)
-forward(135)
+
+forward(54)
+right(97)
+forward(104)
 home()
-None
+
+Perimeter is: 313.3166350750972 pixels
+Area is: 51836.69825931672 pixels
+Ratio of perimeter to area is: 0.0060443015391857865
 
 ******************************************
 
 Program 27
-forward(124)
-right(4)
-forward(64)
+
+forward(63)
+right(161)
+forward(120)
 home()
-None
+
+Perimeter is: 353.67816001238157 pixels
+Area is: 66304.79391067023 pixels
+Ratio of perimeter to area is: 0.005334126526188708
 
 ******************************************
 
 Program 28
-forward(77)
-right(106)
-forward(65)
+
+forward(143)
+right(35)
+forward(147)
 home()
-None
+
+Perimeter is: 572.9329031527742 pixels
+Area is: 174430.25590735825 pixels
+Ratio of perimeter to area is: 0.0032845958986442406
 
 ******************************************
 
 Program 29
-forward(140)
-right(127)
-forward(58)
+
+forward(97)
+right(46)
+forward(59)
 home()
-None
+
+Perimeter is: 289.5541416697781 pixels
+Area is: 44780.61834291118 pixels
+Ratio of perimeter to area is: 0.006466059478064686
 
 ******************************************
 
 Program 30
-forward(60)
-right(18)
-forward(129)
+
+forward(89)
+right(33)
+forward(78)
 home()
-None
+
+Perimeter is: 286.11899243380526 pixels
+Area is: 44274.29676138922 pixels
+Ratio of perimeter to area is: 0.006462417550657163
 
 ******************************************
 
 Program 31
-forward(58)
-right(88)
-forward(140)
+
+forward(118)
+right(168)
+forward(137)
 home()
-None
+
+Perimeter is: 442.4094450419337 pixels
+Area is: 105723.19086742091 pixels
+Ratio of perimeter to area is: 0.0041846017076492175
 
 ******************************************
 
 Program 32
-forward(68)
-right(174)
-forward(83)
+
+forward(133)
+right(74)
+forward(92)
 home()
-None
+
+Perimeter is: 373.1577983459433 pixels
+Area is: 75294.0977934252 pixels
+Ratio of perimeter to area is: 0.004956003316086325
 
 ******************************************
 
 Program 33
-forward(78)
-right(94)
-forward(89)
+
+forward(130)
+right(143)
+forward(96)
 home()
-None
+
+Perimeter is: 383.1010406308178 pixels
+Area is: 79318.63542543452 pixels
+Ratio of perimeter to area is: 0.004829899538437743
 
 ******************************************
 
 Program 34
-forward(59)
-right(154)
-forward(91)
+
+forward(55)
+right(138)
+forward(127)
 home()
-None
+
+Perimeter is: 256.51258258910525 pixels
+Area is: 34905.75988875426 pixels
+Ratio of perimeter to area is: 0.007348717902335282
 
 ******************************************
 
 Program 35
-forward(134)
-right(20)
-forward(74)
+
+forward(146)
+right(110)
+forward(139)
 home()
-None
+
+Perimeter is: 569.930266505359 pixels
+Area is: 172259.8249616835 pixels
+Ratio of perimeter to area is: 0.0033085501313619183
 
 ******************************************
 
 Program 36
-forward(75)
-right(160)
-forward(60)
+
+forward(146)
+right(7)
+forward(68)
 home()
-None
+
+Perimeter is: 318.74023504727944 pixels
+Area is: 54354.32394367266 pixels
+Ratio of perimeter to area is: 0.005864119207472614
 
 ******************************************
 
 Program 37
+
 forward(64)
-right(144)
-forward(96)
+right(51)
+forward(92)
 home()
-None
+
+Perimeter is: 217.80932112813485 pixels
+Area is: 25641.78574183371 pixels
+Ratio of perimeter to area is: 0.00849431171920239
 
 ******************************************
 
 Program 38
-forward(99)
-right(150)
-forward(87)
+
+forward(144)
+right(65)
+forward(77)
 home()
-None
+
+Perimeter is: 418.8332040003844 pixels
+Area is: 93252.05521841215 pixels
+Ratio of perimeter to area is: 0.004491409899968488
 
 ******************************************
 
 Program 39
-forward(143)
-right(104)
-forward(94)
+
+forward(145)
+right(50)
+forward(148)
 home()
-None
+
+Perimeter is: 331.8929049714533 pixels
+Area is: 57811.160617540096 pixels
+Ratio of perimeter to area is: 0.005740983253513092
 
 ******************************************
 
 Program 40
-forward(135)
-right(174)
-forward(101)
+
+forward(147)
+right(117)
+forward(137)
 home()
-None
+
+Perimeter is: 547.7104224119739 pixels
+Area is: 159999.21571403436 pixels
+Ratio of perimeter to area is: 0.0034232069199069915
 
 ******************************************
 
 Program 41
-forward(102)
-right(12)
-forward(94)
+
+forward(69)
+right(93)
+forward(58)
 home()
-None
+
+Perimeter is: 201.72817857432568 pixels
+Area is: 22107.400160823327 pixels
+Ratio of perimeter to area is: 0.009124916412912703
 
 ******************************************
 
 Program 42
-forward(105)
-right(147)
-forward(74)
+
+forward(63)
+right(151)
+forward(138)
 home()
-None
+
+Perimeter is: 278.3562038766553 pixels
+Area is: 41123.77569621269 pixels
+Ratio of perimeter to area is: 0.006768741419389918
 
 ******************************************
 
 Program 43
-forward(91)
-right(107)
-forward(89)
+
+forward(53)
+right(169)
+forward(99)
 home()
-None
+
+Perimeter is: 217.04291677354377 pixels
+Area is: 25275.12487462276 pixels
+Ratio of perimeter to area is: 0.008587214419322753
 
 ******************************************
 
 Program 44
-forward(72)
-right(166)
-forward(115)
+
+forward(57)
+right(154)
+forward(93)
 home()
-None
+
+Perimeter is: 299.9321705547737 pixels
+Area is: 47556.91524838939 pixels
+Ratio of perimeter to area is: 0.006306804572757302
 
 ******************************************
 
 Program 45
-forward(141)
-right(94)
-forward(131)
+
+forward(134)
+right(142)
+forward(50)
 home()
-None
+
+Perimeter is: 360.90882610310376 pixels
+Area is: 68446.2852699657 pixels
+Ratio of perimeter to area is: 0.005272876748235612
 
 ******************************************
 
 Program 46
-forward(80)
-right(134)
-forward(143)
+
+forward(99)
+right(31)
+forward(98)
 home()
-None
+
+Perimeter is: 237.68586104730826 pixels
+Area is: 30118.067712447293 pixels
+Ratio of perimeter to area is: 0.007891803130154883
 
 ******************************************
 
 Program 47
-forward(126)
-right(119)
-forward(94)
+
+forward(100)
+right(177)
+forward(67)
 home()
-None
+
+Perimeter is: 256.8046492465601 pixels
+Area is: 35726.67237423545 pixels
+Ratio of perimeter to area is: 0.007188037177281493
 
 ******************************************
 
 Program 48
-forward(54)
-right(29)
-forward(76)
+
+forward(75)
+right(44)
+forward(77)
 home()
-None
+
+Perimeter is: 154.41034958443106 pixels
+Area is: 12011.522672775513 pixels
+Ratio of perimeter to area is: 0.012855185290904615
 
 ******************************************
 
 Program 49
-forward(113)
-right(111)
-forward(78)
+
+forward(75)
+right(8)
+forward(134)
 home()
-None
+
+Perimeter is: 371.80525384505603 pixels
+Area is: 74058.92759609551 pixels
+Ratio of perimeter to area is: 0.005020397484997583
 
 ******************************************
 
 Program 50
-forward(98)
-right(106)
-forward(73)
+
+forward(51)
+right(92)
+forward(139)
 home()
-None
+
+Perimeter is: 365.5099124906419 pixels
+Area is: 70337.53676806025 pixels
+Ratio of perimeter to area is: 0.005196512833480646
 
 ******************************************
 
 Program 51
-forward(53)
-right(90)
-forward(67)
+
+forward(146)
+right(7)
+forward(71)
 home()
-None
+
+Perimeter is: 320.57170686512126 pixels
+Area is: 55052.502518029556 pixels
+Ratio of perimeter to area is: 0.005823017886609875
 
 ******************************************
 
 Program 52
-forward(69)
-right(148)
-forward(64)
+
+forward(149)
+right(134)
+forward(57)
 home()
-None
+
+Perimeter is: 388.5612148467409 pixels
+Area is: 79735.81706010351 pixels
+Ratio of perimeter to area is: 0.004873107584184533
 
 ******************************************
 
 Program 53
-forward(124)
-right(114)
-forward(132)
+
+forward(85)
+right(42)
+forward(52)
 home()
-None
+
+Perimeter is: 253.03822725506035 pixels
+Area is: 34221.31708723923 pixels
+Ratio of perimeter to area is: 0.007394169739580703
 
 ******************************************
 
 Program 54
+
 forward(148)
-right(110)
-forward(117)
+right(23)
+forward(149)
 home()
-None
+
+Perimeter is: 557.0097450650344 pixels
+Area is: 166154.35053237464 pixels
+Ratio of perimeter to area is: 0.0033523632891965887
 
 ******************************************
 
 Program 55
-forward(137)
-right(110)
-forward(61)
+
+forward(79)
+right(167)
+forward(80)
 home()
-None
+
+Perimeter is: 313.1436466713394 pixels
+Area is: 52134.275919875865 pixels
+Ratio of perimeter to area is: 0.006006483089025801
 
 ******************************************
 
 Program 56
-forward(67)
-right(33)
-forward(72)
+
+forward(84)
+right(160)
+forward(149)
 home()
-None
+
+Perimeter is: 464.68718772925354 pixels
+Area is: 114069.86251953997 pixels
+Ratio of perimeter to area is: 0.004073706914915002
 
 ******************************************
 
 Program 57
-forward(131)
-right(17)
-forward(95)
+
+forward(58)
+right(49)
+forward(96)
 home()
-None
+
+Perimeter is: 250.0864268919958 pixels
+Area is: 33762.60536082656 pixels
+Ratio of perimeter to area is: 0.007407201672361499
 
 ******************************************
 
 Program 58
-forward(93)
-right(167)
-forward(147)
+
+forward(59)
+right(100)
+forward(119)
 home()
-None
+
+Perimeter is: 252.38627827318922 pixels
+Area is: 34041.702830491675 pixels
+Ratio of perimeter to area is: 0.007414032122010153
 
 ******************************************
 
 Program 59
-forward(53)
-right(49)
-forward(68)
+
+forward(111)
+right(68)
+forward(56)
 home()
-None
+
+Perimeter is: 266.92568210589917 pixels
+Area is: 38289.260050249184 pixels
+Ratio of perimeter to area is: 0.006971293823792817
 
 ******************************************
 
 Program 60
-forward(99)
-right(25)
-forward(91)
+
+forward(133)
+right(66)
+forward(72)
 home()
-None
+
+Perimeter is: 409.98353123279816 pixels
+Area is: 88702.29976487313 pixels
+Ratio of perimeter to area is: 0.004622016929882974
 
 ******************************************
 
 Program 61
-forward(127)
-right(174)
-forward(129)
+
+forward(135)
+right(26)
+forward(79)
 home()
-None
+
+Perimeter is: 317.28219040439694 pixels
+Area is: 54305.97875719997 pixels
+Ratio of perimeter to area is: 0.005842490968129935
 
 ******************************************
 
 Program 62
-forward(59)
-right(112)
-forward(108)
+
+forward(120)
+right(110)
+forward(90)
 home()
-None
+
+Perimeter is: 419.9496357881966 pixels
+Area is: 93423.52460449579 pixels
+Ratio of perimeter to area is: 0.004495116594733865
 
 ******************************************
 
 Program 63
-forward(147)
-right(116)
-forward(89)
+
+forward(97)
+right(64)
+forward(111)
 home()
-None
+
+Perimeter is: 323.2898364988435 pixels
+Area is: 56836.17187068606 pixels
+Ratio of perimeter to area is: 0.005688100128108454
 
 ******************************************
 
 Program 64
-forward(128)
-right(47)
-forward(86)
+
+forward(56)
+right(125)
+forward(92)
 home()
-None
+
+Perimeter is: 207.0202479397182 pixels
+Area is: 23069.7032996924 pixels
+Ratio of perimeter to area is: 0.008973684890974672
 
 ******************************************
 
 Program 65
-forward(145)
-right(159)
-forward(76)
+
+forward(134)
+right(40)
+forward(148)
 home()
-None
+
+Perimeter is: 539.5139438503775 pixels
+Area is: 155418.38944501855 pixels
+Ratio of perimeter to area is: 0.003471364912330649
 
 ******************************************
 
 Program 66
-forward(117)
-right(144)
-forward(117)
+
+forward(146)
+right(44)
+forward(133)
 home()
-None
+
+Perimeter is: 292.23197889048583 pixels
+Area is: 43571.47839087704 pixels
+Ratio of perimeter to area is: 0.006706955781231263
 
 ******************************************
 
 Program 67
-forward(149)
-right(100)
-forward(82)
+
+forward(130)
+right(113)
+forward(111)
 home()
-None
+
+Perimeter is: 263.3070589449526 pixels
+Area is: 35894.37220213373 pixels
+Ratio of perimeter to area is: 0.007335608419675895
 
 ******************************************
 
 Program 68
-forward(103)
-right(144)
-forward(73)
+
+forward(124)
+right(173)
+forward(56)
 home()
-None
+
+Perimeter is: 359.1309413482505 pixels
+Area is: 67878.57084680028 pixels
+Ratio of perimeter to area is: 0.005290785248834971
 
 ******************************************
 
 Program 69
-forward(98)
-right(31)
-forward(137)
+
+forward(109)
+right(90)
+forward(139)
 home()
-None
+
+Perimeter is: 459.611735770836 pixels
+Area is: 113194.23982487441 pixels
+Ratio of perimeter to area is: 0.004060380956503728
 
 ******************************************
 
 Program 70
-forward(82)
-right(20)
-forward(117)
+
+forward(116)
+right(91)
+forward(89)
 home()
-None
+
+Perimeter is: 409.7161433137248 pixels
+Area is: 88949.35176498057 pixels
+Ratio of perimeter to area is: 0.004606173459209293
 
 ******************************************
 
 Program 71
-forward(106)
-right(75)
-forward(60)
+
+forward(102)
+right(112)
+forward(56)
 home()
-None
+
+Perimeter is: 249.2743608623396 pixels
+Area is: 33482.51294417495 pixels
+Ratio of perimeter to area is: 0.007444911953829516
 
 ******************************************
 
 Program 72
-forward(75)
-right(117)
-forward(92)
+
+forward(119)
+right(83)
+forward(98)
 home()
-None
+
+Perimeter is: 350.95792730700884 pixels
+Area is: 66847.65115338705 pixels
+Ratio of perimeter to area is: 0.005250116066183224
 
 ******************************************
 
 Program 73
-forward(148)
-right(84)
-forward(55)
+
+forward(71)
+right(90)
+forward(130)
 home()
-None
+
+Perimeter is: 374.8172573530732 pixels
+Area is: 74857.4539056233 pixels
+Ratio of perimeter to area is: 0.005007079960609198
 
 ******************************************
 
 Program 74
-forward(92)
-right(15)
-forward(62)
+
+forward(114)
+right(30)
+forward(64)
 home()
-None
+
+Perimeter is: 299.82431138011975 pixels
+Area is: 48360.29897589814 pixels
+Ratio of perimeter to area is: 0.006199802683799505
 
 ******************************************
 
 Program 75
-forward(50)
-right(111)
-forward(122)
+
+forward(63)
+right(175)
+forward(73)
 home()
-None
+
+Perimeter is: 197.58849043050424 pixels
+Area is: 21227.223798694722 pixels
+Ratio of perimeter to area is: 0.009308258691965839
 
 ******************************************
 
 Program 76
-forward(114)
-right(31)
-forward(132)
+
+forward(131)
+right(13)
+forward(81)
 home()
-None
+
+Perimeter is: 278.81440266936414 pixels
+Area is: 41573.14341070856 pixels
+Ratio of perimeter to area is: 0.006706599015496772
 
 ******************************************
 
 Program 77
-forward(62)
-right(54)
-forward(105)
+
+forward(126)
+right(151)
+forward(89)
 home()
-None
+
+Perimeter is: 257.80227929058753 pixels
+Area is: 35116.66138564315 pixels
+Ratio of perimeter to area is: 0.007341309484391521
 
 ******************************************
 
 Program 78
-forward(79)
-right(118)
-forward(83)
+
+forward(72)
+right(77)
+forward(77)
 home()
-None
+
+Perimeter is: 256.03481280329186 pixels
+Area is: 35453.684800120216 pixels
+Ratio of perimeter to area is: 0.007221670025182367
 
 ******************************************
 
 Program 79
-forward(66)
-right(172)
-forward(110)
+
+forward(69)
+right(50)
+forward(137)
 home()
-None
+
+Perimeter is: 278.7073054467576 pixels
+Area is: 41305.766576910886 pixels
+Ratio of perimeter to area is: 0.006747418787829724
 
 ******************************************
 
 Program 80
-forward(61)
-right(94)
-forward(149)
+
+forward(85)
+right(73)
+forward(86)
 home()
-None
+
+Perimeter is: 330.3240017714951 pixels
+Area is: 58186.36240007435 pixels
+Ratio of perimeter to area is: 0.0056770003854214645
 
 ******************************************
 
 Program 81
-forward(82)
-right(120)
-forward(135)
+
+forward(146)
+right(83)
+forward(145)
 home()
-None
+
+Perimeter is: 469.25675696873 pixels
+Area is: 119638.25918833703 pixels
+Ratio of perimeter to area is: 0.003922296764866966
 
 ******************************************
 
 Program 82
-forward(138)
-right(104)
-forward(127)
+
+forward(148)
+right(41)
+forward(69)
 home()
-None
+
+Perimeter is: 433.4033673586126 pixels
+Area is: 98900.10319743677 pixels
+Ratio of perimeter to area is: 0.004382233722177201
 
 ******************************************
 
 Program 83
-forward(84)
-right(162)
-forward(101)
+
+forward(106)
+right(74)
+forward(114)
 home()
-None
+
+Perimeter is: 361.71074512059334 pixels
+Area is: 70996.82988564803 pixels
+Ratio of perimeter to area is: 0.005094745014716678
 
 ******************************************
 
 Program 84
-forward(105)
-right(34)
-forward(119)
+
+forward(149)
+right(4)
+forward(75)
 home()
-None
+
+Perimeter is: 429.99741485344356 pixels
+Area is: 98021.35211956927 pixels
+Ratio of perimeter to area is: 0.004386772938297365
 
 ******************************************
 
 Program 85
-forward(81)
-right(66)
-forward(117)
+
+forward(112)
+right(76)
+forward(132)
 home()
-None
+
+Perimeter is: 318.7941923000157 pixels
+Area is: 54815.19546716137 pixels
+Ratio of perimeter to area is: 0.00581579960781128
 
 ******************************************
 
 Program 86
-forward(117)
-right(7)
-forward(130)
+
+forward(90)
+right(126)
+forward(95)
 home()
-None
+
+Perimeter is: 216.35077703176475 pixels
+Area is: 24772.813503643894 pixels
+Ratio of perimeter to area is: 0.008733395461922045
 
 ******************************************
 
 Program 87
-forward(78)
-right(90)
-forward(127)
+
+forward(128)
+right(35)
+forward(76)
 home()
-None
+
+Perimeter is: 403.35454733278686 pixels
+Area is: 86121.95462614337 pixels
+Ratio of perimeter to area is: 0.004683527552106251
 
 ******************************************
 
 Program 88
-forward(121)
-right(113)
-forward(136)
+
+forward(135)
+right(63)
+forward(107)
 home()
-None
+
+Perimeter is: 276.5173544478736 pixels
+Area is: 40066.44527068632 pixels
+Ratio of perimeter to area is: 0.0069014696107862865
 
 ******************************************
 
 Program 89
-forward(126)
-right(3)
-forward(125)
+
+forward(80)
+right(153)
+forward(93)
 home()
-None
+
+Perimeter is: 327.4298575407863 pixels
+Area is: 57321.12501481928 pixels
+Ratio of perimeter to area is: 0.005712202219620351
 
 ******************************************
 
 Program 90
-forward(149)
-right(128)
-forward(92)
+
+forward(107)
+right(29)
+forward(104)
 home()
-None
+
+Perimeter is: 408.2657303759535 pixels
+Area is: 88861.5895403689 pixels
+Ratio of perimeter to area is: 0.004594400488306397
 
 ******************************************
 
 Program 91
-forward(57)
-right(79)
-forward(98)
+
+forward(121)
+right(155)
+forward(146)
 home()
-None
+
+Perimeter is: 497.58487550412246 pixels
+Area is: 132628.16023338292 pixels
+Ratio of perimeter to area is: 0.003751728702475651
 
 ******************************************
 
 Program 92
-forward(142)
-right(28)
-forward(97)
+
+forward(100)
+right(74)
+forward(96)
 home()
-None
+
+Perimeter is: 322.17062668009964 pixels
+Area is: 56329.050064710544 pixels
+Ratio of perimeter to area is: 0.005719440081272302
 
 ******************************************
 
 Program 93
-forward(105)
-right(10)
-forward(58)
+
+forward(134)
+right(149)
+forward(50)
 home()
-None
+
+Perimeter is: 337.1474085050636 pixels
+Area is: 60155.718481502496 pixels
+Ratio of perimeter to area is: 0.005604577869163583
 
 ******************************************
 
 Program 94
-forward(94)
-right(108)
-forward(125)
+
+forward(86)
+right(11)
+forward(103)
 home()
-None
+
+Perimeter is: 322.89023240865515 pixels
+Area is: 56381.27620781748 pixels
+Ratio of perimeter to area is: 0.005726905350962687
 
 ******************************************
 
 Program 95
-forward(116)
-right(65)
-forward(111)
+
+forward(133)
+right(14)
+forward(55)
 home()
-None
+
+Perimeter is: 324.7974213851248 pixels
+Area is: 56211.540858072745 pixels
+Ratio of perimeter to area is: 0.005778126990064167
 
 ******************************************
 
 Program 96
-forward(106)
-right(77)
-forward(74)
+
+forward(146)
+right(42)
+forward(85)
 home()
-None
+
+Perimeter is: 427.1342283182894 pixels
+Area is: 97418.91807499078 pixels
+Ratio of perimeter to area is: 0.004384510080367466
 
 ******************************************
 
 Program 97
-forward(77)
-right(132)
-forward(70)
+
+forward(122)
+right(137)
+forward(122)
 home()
-None
+
+Perimeter is: 384.7855279844044 pixels
+Area is: 80520.36265344285 pixels
+Ratio of perimeter to area is: 0.004778735655234309
 
 ******************************************
 
 Program 98
-forward(86)
-right(138)
-forward(117)
+
+forward(132)
+right(85)
+forward(79)
 home()
-None
+
+Perimeter is: 421.2264476097766 pixels
+Area is: 93793.95081616381 pixels
+Ratio of perimeter to area is: 0.0044909766988638815
 
 ******************************************
 
 Program 99
-forward(149)
-right(22)
-forward(57)
+
+forward(146)
+right(79)
+forward(53)
 home()
-None
+
+Perimeter is: 393.9129199733485 pixels
+Area is: 81395.04385577922 pixels
+Ratio of perimeter to area is: 0.004839519721511642
 
 ******************************************
 
 Program 100
-forward(121)
-right(176)
-forward(125)
+
+forward(72)
+right(46)
+forward(52)
 home()
-None
+
+Perimeter is: 229.4710787434035 pixels
+Area is: 28199.344754190697 pixels
+Ratio of perimeter to area is: 0.008137461375208084
 
 ******************************************
 
