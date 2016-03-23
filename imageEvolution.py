@@ -1,6 +1,9 @@
 import random
 import math
+import time
 from turtle import *
+import numpy as np
+from PIL import Image
 
 class Program(object):
     """ Chromosomal representation for the Genetic Algorithm
@@ -10,8 +13,12 @@ class Program(object):
         self.chromosome = chromosome #Linked List to define the genome
         self.fitness = None
         self.size = 0
+        self.parse = Parser(self.expressions())
+        self.poly = Polygon(self.coords())
+        self.turnFunc = self.poly.turnFunc
 
-    def getFitness(self,per1,area1,ratio1,per2,area2,ratio2):
+
+    def getFitness(self):
         print("Not implemented yet")
 
 
@@ -36,31 +43,41 @@ class Program(object):
         progString = "\n".join(progList)
         return progString
 
-    def execute(self):
+    def execute(self,i):
         setup()
+        ts = getscreen()
         exec(self.toString())
-        exitonclick()
+        can = ts.getcanvas()
+        can.postscript(file="test.eps")
+        img = Image.open("test.eps")
+        img.save("test"+str(i)+".png","png")
+        reset()
+
 
     def coords(self):
         coordList = []
         p = Parser(self.expressions())
         track = Tracker()
         comList, argList = p.parseList()
-        #print(comList)
-        #print(argList)
-        #print(track.pos())
         coordList.append(track.pos())
         for x in range(0,len(argList)):
             if comList[x] == 'forward':
                 track.forward(argList[x])
-                #print(track.pos())
                 coordList.append(track.pos())
             elif comList[x] == 'right':
                 track.right(argList[x])
-                #print(track.pos())
-        #track.home()
-        #print(track.pos())
-        print(coordList)
+        return coordList
+
+    def counterClockwiseCoords(self):
+        coords = self.coords()
+        v1 = coords[0]
+        v2 = coords[1]
+        v3 = coords[2]
+        newCoords = [v1,v3,v2]
+        return newCoords
+
+
+
 
 class Node(object):
     """Standard Node object of a Linked List"""
@@ -168,11 +185,157 @@ class Vertex(tuple):
         return "(%.2f,%.2f)" % self
 
 class Polygon:
-    def __init__(self,vertexList,sideList,yAngle):
-        this.vertexList = vertexList
-        this.sides = len(vertexList)
-        this.sideList = sideList
-        this.yAngle = yAngle
+    def __init__(self,vertexList):
+        self.vertexList = vertexList
+        self.size = len(self.vertexList)
+        self.angles = []
+        self.turnFunc = []
+        self.perimeter = 0
+        self.area = 0
+        self.convex = None
+        self.areaUnderFunc = 0
+        self.turningFunction()
+        self.funcArea()
+
+
+    def dotAngles(self,x1,y1,x2,y2):
+        #print('Values',x1,y1,x2,y2)
+        top = (x1 * x2 + y1 * y2)
+        bot = math.sqrt((x1**2 + y1**2) * (x2**2 + y2 ** 2))
+        try:
+            return (math.acos(top/bot))
+        except ValueError:
+            print("Tried to top/bot")
+            return math.pi
+            #self.dotAngles(x1,y1,x2,y2)
+        #self.angles.append(math.acos(top/bot))
+
+    def crossProductSign(self,x1,y1,x2,y2,z1,z2):
+        c = [y1*z2 - z1*y2,
+             z1*x2 - x1*z2,
+             x1*y2 - y1*x2]
+        return c[2]
+        #return x1*y2 < x2*y1
+
+    def degrees(self,angList):
+        ret = []
+        for i in range(len(angList)):
+            ret.append(math.degrees(angList[i]))
+        return ret
+
+    def calcAngles(self):
+        #print(self.vertexList)
+        angList = []
+        for i in range(self.size):
+            p1 = self.vertexList[i]
+            ref = self.vertexList[i-1]
+            p2 = self.vertexList[i-2]
+            x1, y1 = p1[0] - ref[0], p1[1] - ref[1]
+            x2, y2 = p2[0] - ref[0], p2[1] - ref[1]
+            zComp = self.crossProductSign(x1,y1,x2,y2,0,0)
+            if zComp < 1:
+                #print("Positive")
+                ang = self.dotAngles(x1,y1,x2,y2)
+                angList.append(ang)
+            else:
+                #print ("Negative")
+                ang = self.dotAngles(x1,y1,x2,y2)
+                angList.append(-ang)
+        #print("Interior angles",angList)
+        #print(self.degrees(self.externalAngles(self.reorderAngles(angList))))
+        return self.externalAngles(self.reorderAngles(angList))
+        #self.reorderAngles(angList)
+
+    def coordDistance(self):
+        #print("\nDistance time\n")
+        distList = []
+        for i in range(self.size):
+            if i == self.size-1:
+                p1 = self.vertexList[-1]
+                p2 = self.vertexList[0]
+                distList.append(math.hypot(p2[0]-p1[0],p2[1]-p1[1]))
+            else:
+                p1 = self.vertexList[i]
+                p2= self.vertexList[i+1]
+                distList.append(math.hypot(p2[0]-p1[0],p2[1]-p1[1]))
+        return distList
+
+    def reorderAngles(self,lis):
+        #lis = [61.28761450547862, 149.71238549452138, 96.0, 105.00000000000001, 128.0]
+        last = lis.pop(0)
+        lis.append(last)
+        #print(lis)
+        return lis
+
+    def normDist(self,distList):
+        perimeter = 0
+        retList = []
+        for i in range(len(distList)):
+            perimeter = perimeter + distList[i]
+        for i in range(len(distList)):
+            retList.append(distList[i]/perimeter)
+        return retList
+
+    def sumRadians(self,angList):
+        if abs(sum(angList) - 2*math.pi) < .01 or self.size == 3:
+            self.convex = True
+            #print(self.convex)
+            #print("The polygon is convex")
+
+    def xVec(self,distVec):
+        sum = 0
+        ret = []
+        for i in range(len(distVec)):
+            sum = sum + distVec[i]
+            ret.append(sum)
+        return ret
+
+    def yVec(self,angList):
+        sum = 0
+        ret = []
+        for i in range(len(angList)):
+            sum = sum + angList[i]
+            ret.append(sum)
+            if i == len(angList)-1 :
+                pass
+        return ret
+
+    def externalAngles(self,angList):
+        ext = []
+        for i in range(len(angList)):
+            if angList[i] > 0:
+                ext.append(math.pi - angList[i])
+            else:
+                #print("concave angle found",angList[i])
+                ans = math.pi+angList[i]
+                #print("concave angle",-ans)
+                #print("Answer was",ans)
+                ext.append(-ans)
+        #print("External angles are: ",ext)
+        return ext
+
+    def turningFunction(self):
+        #self.sumRadians(self.calcAngles())
+        angList = self.calcAngles()
+        self.sumRadians(angList)
+        yVec = self.yVec(angList)
+        distList = self.xVec(self.normDist(self.coordDistance()))
+        func = []
+        for i in range(len(angList)):
+            func.append([distList[i],yVec[i]])
+        self.turnFunc = func
+        #print(self.turnFunc)
+        return func
+
+    def funcArea(self):
+        area = 0
+        first = self.turnFunc[0][0] * self.turnFunc[0][1]
+        area = area + first
+        for i in range(1,len(self.turnFunc)):
+            a = (self.turnFunc[i][0]-self.turnFunc[i-1][0]) * self.turnFunc[i][1]
+            area = area+a
+        #print(area)
+            self.areaUnderFunc = area
 
 class Triangle:
     def __init__(self, name,xLen,yLen,yAngle):
@@ -247,7 +410,8 @@ class Triangle:
             l = [xVec[x],yVec[x]]
             func.append(l)
 
-        print(func)
+        #print(func)
+        return func
 
 
 
@@ -260,7 +424,7 @@ class Generator:
         ########## CONSTANTS FOR GENERATION ####################
         self.MAX_DIRECTION_COMMAND_VALUE = 150
         self.MIN_DIRECTION_COMMAND_VALUE = 50
-        self.MAX_ANGLE_COMMAND_VALUE = 178
+        self.MAX_ANGLE_COMMAND_VALUE = 110
         self.MIN_ANGLE_COMMAND_VALUE = 50
         ########## INITIALIZATION ARGUMENTS ####################
         self.maxComCount = maxCommands
@@ -298,6 +462,39 @@ class Generator:
         chromosome.insert("forward (" + str(i)+")")
         return chromosome
 
+    def genGoalTriangle(self):
+        chromosome = LinkedList()
+        chromosome.insert("home ()")
+        chromosome.insert("forward (" + str(50)+")")
+        chromosome.insert("right ("+str(90)+")")
+        chromosome.insert("forward (" + str(50)+")")
+        return chromosome
+
+    def genTest(self):
+        chromosome = LinkedList()
+        chromosome.insert("home ()")
+        chromosome.insert("forward (" + str(84)+")")
+        chromosome.insert("right ("+str(111)+")")
+        chromosome.insert("forward (" + str(136)+")")
+        return chromosome
+
+    def genForwardRight(self):
+        forwardArg = random.randrange(self.MIN_DIRECTION_COMMAND_VALUE, self.MAX_DIRECTION_COMMAND_VALUE)
+        rightArg = random.randrange(self.MIN_ANGLE_COMMAND_VALUE, self.MAX_ANGLE_COMMAND_VALUE)
+        forward = "forward (" + str(forwardArg)+")"
+        right = "right (" + str(rightArg)+")"
+        return forward,right
+
+    def genPolygon(self,sides):
+        chromosome = LinkedList()
+        chromosome.insert("home ()")
+        chromosome.insert("forward ("+str(random.randrange(self.MIN_DIRECTION_COMMAND_VALUE, self.MAX_DIRECTION_COMMAND_VALUE))+")")
+        for i in range(0,sides-2):
+            forward,right = self.genForwardRight()
+            chromosome.insert(right)
+            chromosome.insert(forward)
+        return chromosome
+
 class Parser:
     """Used to Parse the generated Programs"""
     def __init__(self, expr):
@@ -309,13 +506,12 @@ class Parser:
         forward2 = int(''.join(x for x in self.expr[2] if x.isdigit()))
         #return forward,forward2,right
         t = Triangle('Test',forward,forward2,right)
-        per = t.findPerimeter()
-        area = t.findArea()
-        rat = per/area
+        t.findPerimeter()
+        t.findArea()
         t.xVector()
         t.yVec()
-        t.turningFunction()
-        return per,area,rat
+        turn = t.turningFunction()
+        return turn
 
     def parseList(self):
         progList=[]
@@ -339,15 +535,14 @@ class Tracker:
         Tracker._reset(self)
 
     def _reset(self):
-        self._position = Vertex(0,0)
-        self._orient = Vertex(1,0)
+        self._position = Vertex(0.0,0.0)
+        self._orient = Vertex(1.0,0.0)
 
     def _setDegreesPerAU(self, fullcircle):
         """Helper function for degrees() and radians()"""
         self._fullcircle = fullcircle
         self._degreesPerAU = 360/fullcircle
-        #if self._mode == "standard":
-        #    self._angleOffset = 0
+        self._angleOffset = 0
         #else:
         #    self._angleOffset = fullcircle/4.
 
@@ -386,29 +581,96 @@ def fitness(per1,area1,rat1,per2,area2,rat2):
 def ratFit(rat1,rat2):
     return abs(rat1-rat2)
 
+def turningDistance(a1,a2):
+    return (abs(a1-a2))
+
 
 def main():
-    perList=[]
-    areaList=[]
-    ratList=[]
-    testSize=100
-    for x in range(0,testSize):
-        print("Program " +str(x+1)+"\n")
+    progList = []
+    testSize=5
+    #gen = Generator(4,4)
+    #prog = Program(gen.genGoalTriangle())
+    #goal = prog.parse.parseTriangle()
+    num = 0
+    #for x in range(3,7):
+    #    for y in range(0,testSize):
+    #        print("\nProgram",num+1)
+    #        gen = Generator(4,4)
+    #        prog = Program(gen.genPolygon(x))
+    #        print(prog.turnFunc)
+    #        prog.execute(num+1)
+            #if prog.poly.convex:
+   #         progList.append(prog)
+   #         num+=1
+            #    num += 1
+
+            #else:
+            #    print("\nNot convex")
+            #    prog.execute(-num)
+
+    done = False
+    count = 0
+    gen = Generator(4,4)
+    goal = Program(gen.genPolygon(4))
+    print("Goal is")
+    print(goal.toString())
+    goal.execute(500)
+    t0 = time.clock()
+    while not done:
         gen = Generator(4,4)
-        prog = Program(gen.genTriangle())
+        prog = Program(gen.genPolygon(random.randint(3,8)))
+        fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
+        if  fit < .0000001:
+            print("\nFound it",count)
+            print(prog.toString())
+            prog.execute(1000)
+            done = True
+        elif fit < .001:
+            progList.append(prog)
+        count +=1
+        if count % 1000000 == 0:
+            print("Still churning along")
+    print((time.clock()-t0)/count)
+
+
+    #print("Fitness hype")
+    ct = 1000
+    for x in range(0,len(progList)):
+        progList[x].execute(ct)
+        ct+=1
+
+    #for x in range(1,179):
+    #    gen = Generator(4,4)
+    #    prog = Program(gen.genTest(x))
+    #    t = prog.parse.parseTriangle()
+    #    turnList.append(t)
+
+    #for x in range(0,178):
+    #    turningDistance(goal,turnList[x])
+
+    #for x in range(0,testSize):
+    #    print("Program " +str(x+1)+"\n")
+    #    gen = Generator(4,4)
+    #    prog = Program(gen.genPolygon(6))
+    #    print(prog.turnFunc)
+        #print(prog.poly.reorderAngles())
+        #triTest = Polygon(prog.coords())
+        #triTest.calcAngles()
+        #triTest.coordDistance()
+        #triTest.turningFunction()
+    #    prog.execute(x)
+    #    print (prog.toString()+"\n")
+        #parse = Parser(prog.expressions())
+        #prog.coords()
         #prog.execute()
-        print (prog.toString()+"\n")
-        parse = Parser(prog.expressions())
-        prog.coords()
-        #prog.execute()
-        per,area,rat = parse.parseTriangle()
-        perList.append(per)
-        areaList.append(area)
-        ratList.append(rat)
-        #print("Perimeter is: " + str(per) + " pixels")
-        #print("Area is: "+ str(area)+ " pixels")
-        #print("Ratio of perimeter to area is: "+ str(rat))
-        print("\n******************************************\n")
+        #t = parse.parseTriangle()
+        #turnList.append(t)
+    #    print("\n******************************************\n")
+
+    #for x in range(0,testSize):
+    #    for y in range(0,testSize):
+    #        print("Turning distance from func " + str(x+1) + " to func "+ (str(y+1)))
+    #        turningDistance(turnList[x],turnList[y])
 
 if __name__ == "__main__":
     main()
