@@ -1,8 +1,9 @@
 import random
 import math
 import time
+import operator
 from turtle import *
-import numpy as np
+#import numpy as np
 from PIL import Image
 
 class Program(object):
@@ -75,9 +76,6 @@ class Program(object):
         v3 = coords[2]
         newCoords = [v1,v3,v2]
         return newCoords
-
-
-
 
 class Node(object):
     """Standard Node object of a Linked List"""
@@ -413,9 +411,6 @@ class Triangle:
         #print(func)
         return func
 
-
-
-
 class Generator:
     """Used to generate Programs from a set of rules"""
     def __init__(self, minCommands, maxCommands):
@@ -526,7 +521,6 @@ class Parser:
             argList.append(arg)
         return comList, argList
 
-
 class Tracker:
     def __init__(self):
         self._angleOffset = 0
@@ -572,6 +566,14 @@ class Tracker:
     def home(self):
         self._goto(0,0)
 
+class Generation:
+    def __init__(self,progList):
+        self.progList = progList
+        self.sortProgs()
+
+    def sortProgs(self):
+        self.progList.sort(key=operator.attrgetter('fitness'))
+
 def normalize(arg):
     return [float(i)/max(arg) for i in arg]
 
@@ -582,32 +584,14 @@ def ratFit(rat1,rat2):
     return abs(rat1-rat2)
 
 def turningDistance(a1,a2):
-    return (abs(a1-a2))
+    return abs(a1-a2)
 
 
 def main():
-    progList = []
+
     testSize=5
-    #gen = Generator(4,4)
-    #prog = Program(gen.genGoalTriangle())
-    #goal = prog.parse.parseTriangle()
     num = 0
-    #for x in range(3,7):
-    #    for y in range(0,testSize):
-    #        print("\nProgram",num+1)
-    #        gen = Generator(4,4)
-    #        prog = Program(gen.genPolygon(x))
-    #        print(prog.turnFunc)
-    #        prog.execute(num+1)
-            #if prog.poly.convex:
-   #         progList.append(prog)
-   #         num+=1
-            #    num += 1
-
-            #else:
-            #    print("\nNot convex")
-            #    prog.execute(-num)
-
+    generations=[]
     done = False
     count = 0
     gen = Generator(4,4)
@@ -615,29 +599,46 @@ def main():
     print("Goal is")
     print(goal.toString())
     goal.execute(500)
-    t0 = time.clock()
-    while not done:
-        gen = Generator(4,4)
-        prog = Program(gen.genPolygon(random.randint(3,8)))
-        fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
-        if  fit < .0000001:
-            print("\nFound it",count)
-            print(prog.toString())
-            prog.execute(1000)
-            done = True
-        elif fit < .001:
+    for x in range(0,5):
+        progList = []
+        for y in range(0,100):
+            gen = Generator(4,4)
+            prog = Program(gen.genPolygon(random.randint(3,8)))
+            fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
+            prog.fitness = fit
             progList.append(prog)
-        count +=1
-        if count % 1000000 == 0:
-            print("Still churning along")
-    print((time.clock()-t0)/count)
+        generations.append(Generation(progList))
+
+    for x in range(0,len(generations)):
+        print("Generation",x)
+        for y in range(0,10):
+            print(generations[x].progList[y].fitness)
+
+
+    #t0 = time.clock()
+    #while not done:
+    #   gen = Generator(4,4)
+    #    prog = Program(gen.genPolygon(random.randint(3,8)))
+    #    fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
+    #    prog.fitness = fit
+    #    if  fit < .0000001:
+    #        print("\nFound it",count)
+    #        print(prog.toString())
+    #        prog.execute(1000)
+    #        done = True
+    #    elif fit < .001:
+    #        progList.append(prog)
+    #    count +=1
+    #    if count % 1000000 == 0:
+    #        print("Still churning along")
+    #print((time.clock()-t0)/count)
 
 
     #print("Fitness hype")
-    ct = 1000
-    for x in range(0,len(progList)):
-        progList[x].execute(ct)
-        ct+=1
+    #ct = 1000
+    #for x in range(0,len(progList)):
+    #    progList[x].execute(ct)
+    #    ct+=1
 
     #for x in range(1,179):
     #    gen = Generator(4,4)
