@@ -586,6 +586,23 @@ def ratFit(rat1,rat2):
 def turningDistance(a1,a2):
     return abs(a1-a2)
 
+def geneticAlgorithm(current):
+    #print(current.progList[0].fitness)
+    fitList = []
+    for x in range(0,len(current.progList)):
+        fitList.append(current.progList[x].fitness)
+    top = fitList[:10] #Grab top 10 for unchanged values
+    del fitList[-25:] #Delete bottom 25 from the list
+    middle = fitList[10:] #Get what's left to mutate
+    print("Top",top)
+    print("Middle",middle)
+    print("Length of top", len(top))
+    print("Length of middle", len(middle))
+
+    #bottom = current[-25:] #Grab last 25 to throw away
+
+
+
 
 def main():
 
@@ -613,6 +630,8 @@ def main():
         print("Generation",x)
         for y in range(0,10):
             print(generations[x].progList[y].fitness)
+
+    geneticAlgorithm(generations[0])
 
 
     #t0 = time.clock()
