@@ -2,9 +2,10 @@ import random
 import math
 import time
 import operator
+import itertools
 from turtle import *
 #import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 class Program(object):
     """ Chromosomal representation for the Genetic Algorithm
@@ -46,6 +47,7 @@ class Program(object):
 
     def execute(self,i):
         setup()
+        ht()
         ts = getscreen()
         exec(self.toString())
         can = ts.getcanvas()
@@ -53,6 +55,14 @@ class Program(object):
         img = Image.open("test.eps")
         img.save("test"+str(i)+".png","png")
         reset()
+
+    def savePIL(self,i):
+        chain = list(itertools.chain(*self.poly.vertexList))
+        print(chain)
+        img = Image.new('RGB', (300,300),(255,255,255,0))
+        draw = ImageDraw.Draw(img)
+        draw.polygon(chain,outline=(255,0,0))
+        img.show()
 
 
     def coords(self):
@@ -204,6 +214,8 @@ class Polygon:
             return (math.acos(top/bot))
         except ValueError:
             print("Tried to top/bot")
+            return math.pi
+        except ZeroDivisionError:
             return math.pi
             #self.dotAngles(x1,y1,x2,y2)
         #self.angles.append(math.acos(top/bot))
@@ -586,23 +598,114 @@ def ratFit(rat1,rat2):
 def turningDistance(a1,a2):
     return abs(a1-a2)
 
-def geneticAlgorithm(current):
+def mutateArgs(program):
+    mutProg = program.expressions()
+    length = len(mutProg) - 1
+    choice = random.randint(1,length)
+    expr = mutProg.pop(choice-1)
+    arg = int(''.join(x for x in expr if x.isdigit()))
+    com = expr.split(' ')
+    command = com[0]
+    newArg = int(random.gauss(arg,25))
+    newExpr = str(command) +str(" (")+str(newArg)+str(")")
+    mutProg.insert(choice-1,newExpr)
+    mutProg.reverse()
+    LList = LinkedList()
+    for x in range(0,len(mutProg)):
+        LList.insert(mutProg[x])
+    p = Program(LList)
+    #print(p.expressions())
+    return p
+    #print("Program after mutation,",p.expressions())
+
+def removeVertex(program):
+    mutProg = program.expressions()
+    num = (len(mutProg)-2)/2
+    choice = random.randint(1,num)
+    mutProg.pop(choice)
+    mutProg.pop(choice)
+    mutProg.reverse()
+    LList = LinkedList()
+    for x in range(0,len(mutProg)):
+        LList.insert(mutProg[x])
+    p = Program(LList)
+    return p
+    #print("Removed Vertex program",p.expressions())
+
+def addVertex(program):
+    mutProg = program.expressions()
+    gen = Generator(4,4)
+    forward,right = gen.genForwardRight()
+    num = len(mutProg)-2
+    choice = random.randint(2,num)
+    if choice%2==0:
+        choice -= 1
+    mutProg.insert(choice+1,forward)
+    mutProg.insert(choice+2,right)
+    mutProg.reverse()
+    LList = LinkedList()
+    for x in range(0,len(mutProg)):
+        LList.insert(mutProg[x])
+    p = Program(LList)
+    return p
+    #print("Vertex added",p.expressions())
+    #return mutProg
+
+def mutate(progList):
+    newProgs = []
+    for x in range(0,len(progList)):
+        choice = random.randint(1,3)
+        if choice == 1:
+            p = mutateArgs(progList[x])
+            newProgs.append(p)
+        elif choice == 2:
+            p = removeVertex(progList[x])
+            newProgs.append(p)
+        else:
+            p = addVertex(progList[x])
+            newProgs.append(p)
+
+    return newProgs
+
+def geneticAlgorithm(goal, current):
+    #print(type(current))
     #print(current.progList[0].fitness)
     fitList = []
     for x in range(0,len(current.progList)):
-        fitList.append(current.progList[x].fitness)
+        fitList.append(current.progList[x])
     top = fitList[:10] #Grab top 10 for unchanged values
     del fitList[-25:] #Delete bottom 25 from the list
     middle = fitList[10:] #Get what's left to mutate
-    print("Top",top)
-    print("Middle",middle)
-    print("Length of top", len(top))
-    print("Length of middle", len(middle))
-
+    newMiddle = mutate(middle)
+    for x in range(0,len(newMiddle)):
+        fit = turningDistance(goal.poly.areaUnderFunc,newMiddle[x].poly.areaUnderFunc)
+        newMiddle[x].fitness = fit
+    newBottom=[]
+    for x in range(0,25):
+        gen = Generator(4,4)
+        prog = Program(gen.genPolygon(random.randint(3,8)))
+        fit = turningDistance(goal.poly.areaUnderFunc, prog.poly.areaUnderFunc)
+        prog.fitness = fit
+        newBottom.append(prog)
+    newGen = top + newMiddle + newBottom
+    ret = Generation(newGen)
+    return ret
     #bottom = current[-25:] #Grab last 25 to throw away
 
+def initPop(goal):
+    progList = []
+    for x in range(0,100):
+        gen = Generator(4,4)
+        prog = Program(gen.genPolygon(random.randint(3,8)))
+        fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
+        prog.fitness = fit
+        progList.append(prog)
+    g = Generation(progList)
+    return g
 
 
+def fitTest(goal,current):
+    return turningDistance(goal.poly.areaUnderFunc,current.poly.areaUnderFunc)
 
 def main():
 
@@ -616,22 +719,36 @@ def main():
     print("Goal is")
     print(goal.toString())
     goal.execute(500)
-    for x in range(0,5):
-        progList = []
-        for y in range(0,100):
-            gen = Generator(4,4)
-            prog = Program(gen.genPolygon(random.randint(3,8)))
-            fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
-            prog.fitness = fit
-            progList.append(prog)
-        generations.append(Generation(progList))
+    init = initPop(goal)
+    #print(type(init))
+    generations.append(init)
+    while not done:
+        init = geneticAlgorithm(goal,init)
+        if init.progList[0].fitness < 0.000001:
+            done = True
+        generations.append(init)
 
+
+    best = 2
     for x in range(0,len(generations)):
-        print("Generation",x)
-        for y in range(0,10):
-            print(generations[x].progList[y].fitness)
+        if generations[x].progList[0].fitness < best:
+            print("Generation",x)
+            print(generations[x].progList[0].fitness)
+            best = generations[x].progList[0].fitness
+            generations[x].progList[0].execute(500+x)
 
-    geneticAlgorithm(generations[0])
+
+
+  #for x in range(0,500):
+    #    progList = []
+    #    for y in range(0,100):
+    #        gen = Generator(4,4)
+    #        prog = Program(gen.genPolygon(random.randint(3,8)))
+    ##        fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
+     #       prog.fitness = fit
+     #       progList.append(prog)
+     #   generations.append(Generation(progList))
+    #geneticAlgorithm(generations[0])
 
 
     #t0 = time.clock()
