@@ -338,7 +338,8 @@ class Polygon:
         func = []
         func.append([0.0,0.0])
         for i in range(len(angList)):
-            func.append([distList[i],yVec[i]])
+            try: func.append([distList[i],yVec[i]])
+            except IndexError: func.append([0.0],[0.0])
         self.turnFunc = func
         #print(self.turnFunc)
         return func
@@ -618,25 +619,6 @@ def normalize(arg):
 
 def fitness(goal, current):
     """Takes two turning functions and returns the area between them as a measure of dissimilarity"""
-    #length = len(goal) + len(current)
-    #xVals = []
-    #yVals = []
-    #aVals = []
-    #test = goal+current
-    #for x in range(0,length):
-    #    xVals.append(test[x][0])
-    #    yVals.append(test[x][1])
-    #xVals.sort()
-    #yVals.sort()
-    #print(length-2)
-    #print(xVals)
-    #print(yVals)
-    #aVals.append(xVals[0]*(yVals[1]-yVals[0]))
-    #for x in range(1,len(xVals)-2):
-    #    print("Using these values",x,xVals[x],xVals[x-1],yVals[x+1],yVals[x])
-    #    aVals.append((xVals[x]-xVals[x-1]) * (yVals[x+1]-yVals[x]))
-    #return sum(aVals)
-
     aVals=[]
     totalFunc = goal+current
     n = len(goal)
@@ -666,23 +648,6 @@ def fitness(goal, current):
             aVals.append(dx*dy)
             x+=1
         count +=1
-
-
-    #for x in range(0,len(goal)):
-    #    for y in range(0,len(current)):
-    #       if current[y][0] <= goal[x][0]:
-    #            print("Less than",current[y],goal[x])
-    #            intRect = interiorRectangle(goal[x],current[y])
-    #            print(intRect.area)
-    #            aVals.append(intRect.area)
-    #        elif current[y][0] > goal[x][0]:
-    #            print("Greater than",current[y-1],goal[x])
-    #            dx = abs(current[y-1][0]-goal[x][0])
-    #            dy = abs(current[y][1]-goal[x][1])
-    #            print(dx*dy)
-    #            #current[y][1]=current[y][1]-dy
-    #            aVals.append(dx*dy)
-    #            break
     return sum(aVals)
 
 
@@ -695,7 +660,7 @@ def ratFit(rat1,rat2):
 def turningDistance(a1,a2):
     return abs(a1-a2)
 
-def mutateArgs(program):
+def mutateArgs(program,std):
     mutProg = program.expressions()
     length = len(mutProg) - 1
     choice = random.randint(1,length)
@@ -703,7 +668,7 @@ def mutateArgs(program):
     arg = int(''.join(x for x in expr if x.isdigit()))
     com = expr.split(' ')
     command = com[0]
-    newArg = int(random.gauss(arg,25))
+    newArg = int(random.gauss(arg,std))
     newExpr = str(command) +str(" (")+str(newArg)+str(")")
     mutProg.insert(choice-1,newExpr)
     mutProg.reverse()
@@ -751,11 +716,11 @@ def addVertex(program):
 def mutate(progList):
     newProgs = []
     for x in range(0,len(progList)):
-        choice = random.randint(1,10)
-        if choice < 8:
-            p = mutateArgs(progList[x])
+        choice = random.randint(1,65)
+        if choice < 50:
+            p = mutateArgs(progList[x],25)
             newProgs.append(p)
-        elif choice == 10 and len(progList[x].expressions())>5:
+        elif choice > 60 and len(progList[x].expressions())>5:
             p = removeVertex(progList[x])
             newProgs.append(p)
         else:
@@ -796,7 +761,12 @@ def geneticAlgorithm(goal, current, num):
     top = fitList[:10] #Grab top 10 for unchanged values
     del fitList[-25:] #Delete bottom 25 from the list
     middle = fitList[10:] #Get what's left to mutate
+    newTop=[]
     for x in range(0,len(top)):
+        choice = random.randint(0,len(middle)-1)
+        mate(top[x],middle[choice])
+        choice = random.randint(0,len(middle)-1)
+        mate(top[x],middle[choice])
         choice = random.randint(0,len(middle)-1)
         mate(top[x],middle[choice])
     newMiddle = mutate(middle)
@@ -858,14 +828,18 @@ def main():
         best = 2
         while not done:
             init = geneticAlgorithm(goal,init,count+1)
-            if init.progList[0].fitness < 0.1:
+            if count%500==0:
+                print("Count and current best:",count,init.progList[0].fitness)
+            if init.progList[0].fitness < 0.1 or num >=2000:
                 done = True
             if init.progList[0].fitness < best:
                 print(init.progList[0].fitness)
                 init.progList[0].execute(x+init.progList[0].fitness)
                 generations.append(init)
                 best = init.progList[0].fitness
+                num=0
             count+=1
+            num+=1
 
         print("Generation \t Fitness")
         for y in range(0,len(generations)):
