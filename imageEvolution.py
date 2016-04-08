@@ -3,6 +3,8 @@ import math
 import time
 import operator
 import itertools
+from multiprocessing import Pool
+#import TkGui
 from turtle import *
 #import numpy as np
 from PIL import Image, ImageDraw
@@ -46,6 +48,7 @@ class Program(object):
         return progString
 
     def execute(self,i):
+        reset()
         setup()
         ht()
         ts = getscreen()
@@ -54,7 +57,7 @@ class Program(object):
         can.postscript(file="test.eps")
         img = Image.open("test.eps")
         img.save("test"+str(i)+".png","png")
-        reset()
+
 
     def savePIL(self,i):
         chain = list(itertools.chain(*self.poly.vertexList))
@@ -200,10 +203,11 @@ class Polygon:
         self.turnFunc = []
         self.perimeter = 0
         self.area = 0
-        self.convex = None
+        self.convex = True
         self.areaUnderFunc = 0
         self.turningFunction()
-        self.funcArea()
+        self.convexCheck()
+        #self.funcArea()
 
 
     def dotAngles(self,x1,y1,x2,y2):
@@ -213,7 +217,7 @@ class Polygon:
         try:
             return (math.acos(top/bot))
         except ValueError:
-            print("Tried to top/bot")
+            #print("Tried to top/bot")
             return math.pi
         except ZeroDivisionError:
             return math.pi
@@ -283,7 +287,8 @@ class Polygon:
         for i in range(len(distList)):
             perimeter = perimeter + distList[i]
         for i in range(len(distList)):
-            retList.append(distList[i]/perimeter)
+            try: retList.append(distList[i]/perimeter)
+            except ZeroDivisionError: perimeter=1
         return retList
 
     def sumRadians(self,angList):
@@ -331,6 +336,7 @@ class Polygon:
         yVec = self.yVec(angList)
         distList = self.xVec(self.normDist(self.coordDistance()))
         func = []
+        func.append([0.0,0.0])
         for i in range(len(angList)):
             func.append([distList[i],yVec[i]])
         self.turnFunc = func
@@ -346,6 +352,13 @@ class Polygon:
             area = area+a
         #print(area)
             self.areaUnderFunc = area
+
+    def convexCheck(self):
+        best = 0
+        for x in range(0,len(self.turnFunc)):
+            if self.turnFunc[x][1] > best:
+                best = self.turnFunc[x][1]
+            else: self.convex=False
 
 class Triangle:
     def __init__(self, name,xLen,yLen,yAngle):
@@ -579,18 +592,102 @@ class Tracker:
         self._goto(0,0)
 
 class Generation:
-    def __init__(self,progList):
+    def __init__(self,progList,num):
         self.progList = progList
         self.sortProgs()
+        self.num=num
 
     def sortProgs(self):
         self.progList.sort(key=operator.attrgetter('fitness'))
 
+class interiorRectangle:
+    def __init__(self,listx,listy):
+        self.listx=listx
+        self.listy=listy
+        self.area=None
+        self.calcArea()
+
+    def calcArea(self):
+        dx = abs(self.listx[0]-self.listy[0])
+        dy = abs(self.listx[1]-self.listy[1])
+        #print(dx*dy)
+        self.area = dx*dy
+
 def normalize(arg):
     return [float(i)/max(arg) for i in arg]
 
-def fitness(per1,area1,rat1,per2,area2,rat2):
-    return abs(per1-per2)+abs(area1-area2)+abs(rat1-rat2)
+def fitness(goal, current):
+    """Takes two turning functions and returns the area between them as a measure of dissimilarity"""
+    #length = len(goal) + len(current)
+    #xVals = []
+    #yVals = []
+    #aVals = []
+    #test = goal+current
+    #for x in range(0,length):
+    #    xVals.append(test[x][0])
+    #    yVals.append(test[x][1])
+    #xVals.sort()
+    #yVals.sort()
+    #print(length-2)
+    #print(xVals)
+    #print(yVals)
+    #aVals.append(xVals[0]*(yVals[1]-yVals[0]))
+    #for x in range(1,len(xVals)-2):
+    #    print("Using these values",x,xVals[x],xVals[x-1],yVals[x+1],yVals[x])
+    #    aVals.append((xVals[x]-xVals[x-1]) * (yVals[x+1]-yVals[x]))
+    #return sum(aVals)
+
+    aVals=[]
+    totalFunc = goal+current
+    n = len(goal)
+    #print(len(totalFunc))
+    m = len(current)
+    done = False
+    x = 0
+    y = 0
+    count =0
+    while not done:
+        if x+y == len(totalFunc)-3:
+            done = True
+        if current[y][0] <= goal[x][0]:
+            #print("Less than",current[y],goal[x])
+            dx = abs(current[y][0]-current[y-1][0])
+            dy = abs(current[y][1]-goal[x][1])
+            #print(dx*dy,dx,dy,count)
+            aVals.append(dx*dy)
+            y+=1
+        elif current[y][0] > goal[x][0]:
+            #print("Greater than",current[y],goal[x])
+            dx = abs(current[y-1][0]-goal[x][0])
+            dy = abs(current[y][1]-goal[x][1])
+            current[y][0] = current[y][0]-dx
+            #print(dx*dy,dx,dy,count)
+            #current[y][1]=current[y][1]-dy
+            aVals.append(dx*dy)
+            x+=1
+        count +=1
+
+
+    #for x in range(0,len(goal)):
+    #    for y in range(0,len(current)):
+    #       if current[y][0] <= goal[x][0]:
+    #            print("Less than",current[y],goal[x])
+    #            intRect = interiorRectangle(goal[x],current[y])
+    #            print(intRect.area)
+    #            aVals.append(intRect.area)
+    #        elif current[y][0] > goal[x][0]:
+    #            print("Greater than",current[y-1],goal[x])
+    #            dx = abs(current[y-1][0]-goal[x][0])
+    #            dy = abs(current[y][1]-goal[x][1])
+    #            print(dx*dy)
+    #            #current[y][1]=current[y][1]-dy
+    #            aVals.append(dx*dy)
+    #            break
+    return sum(aVals)
+
+
+
+
 
 def ratFit(rat1,rat2):
     return abs(rat1-rat2)
@@ -654,11 +751,11 @@ def addVertex(program):
 def mutate(progList):
     newProgs = []
     for x in range(0,len(progList)):
-        choice = random.randint(1,3)
-        if choice == 1:
+        choice = random.randint(1,10)
+        if choice < 8:
             p = mutateArgs(progList[x])
             newProgs.append(p)
-        elif choice == 2:
+        elif choice == 10 and len(progList[x].expressions())>5:
             p = removeVertex(progList[x])
             newProgs.append(p)
         else:
@@ -667,40 +764,66 @@ def mutate(progList):
 
     return newProgs
 
-def geneticAlgorithm(goal, current):
-    #print(type(current))
-    #print(current.progList[0].fitness)
+def mate(top,middle):
+    mateProg = top.expressions()
+    mutProg = middle.expressions()
+    mateNum = (len(mateProg)-2)/2
+    mateChoice = random.randint(1,mateNum)
+    num = len(mutProg)-2
+    choice = random.randint(2,num)
+    if choice%2==0:
+        choice -= 1
+    #print(mateProg)
+    forward = str(mateProg.pop(mateChoice))
+    right = str(mateProg.pop(mateChoice))
+    mutProg[choice+1] = forward
+    mutProg[choice+2] = right
+    #print(mutProg)
+    #print(len(mutProg))
+    mutProg.reverse()
+    LList = LinkedList()
+    for x in range(0,len(mutProg)):
+    #    print(mutProg[x])
+        LList.insert(mutProg[x])
+    p = Program(LList)
+    #print (p.turnFunc)
+
+
+def geneticAlgorithm(goal, current, num):
     fitList = []
     for x in range(0,len(current.progList)):
         fitList.append(current.progList[x])
     top = fitList[:10] #Grab top 10 for unchanged values
     del fitList[-25:] #Delete bottom 25 from the list
     middle = fitList[10:] #Get what's left to mutate
+    for x in range(0,len(top)):
+        choice = random.randint(0,len(middle)-1)
+        mate(top[x],middle[choice])
     newMiddle = mutate(middle)
     for x in range(0,len(newMiddle)):
-        fit = turningDistance(goal.poly.areaUnderFunc,newMiddle[x].poly.areaUnderFunc)
+        fit = fitness(goal.poly.turnFunc,newMiddle[x].poly.turnFunc)
         newMiddle[x].fitness = fit
     newBottom=[]
     for x in range(0,25):
         gen = Generator(4,4)
-        prog = Program(gen.genPolygon(random.randint(3,8)))
-        fit = turningDistance(goal.poly.areaUnderFunc, prog.poly.areaUnderFunc)
+        prog = Program(gen.genPolygon(random.randint(4,8)))
+        fit = fitness(goal.poly.turnFunc,prog.poly.turnFunc)
         prog.fitness = fit
         newBottom.append(prog)
     newGen = top + newMiddle + newBottom
-    ret = Generation(newGen)
+    ret = Generation(newGen,num)
     return ret
-    #bottom = current[-25:] #Grab last 25 to throw away
 
-def initPop(goal):
+def initPop(goal,num):
     progList = []
     for x in range(0,100):
         gen = Generator(4,4)
-        prog = Program(gen.genPolygon(random.randint(3,8)))
-        fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
+        prog = Program(gen.genPolygon(random.randint(4,8)))
+        #fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
+        fit = fitness(goal.poly.turnFunc,prog.poly.turnFunc)
         prog.fitness = fit
         progList.append(prog)
-    g = Generation(progList)
+    g = Generation(progList,num)
     return g
 
 
@@ -708,106 +831,50 @@ def fitTest(goal,current):
     return turningDistance(goal.poly.areaUnderFunc,current.poly.areaUnderFunc)
 
 def main():
+    for x in range(0,5):
+        #print("Test",x+1,"\n")
+        testSize=5
+        num = 0
+        f = [[0.0,0.0],[.33,1.25],[.7,3.14],[1,6.28]]
+        g = [[0.0,0.0],[.25,1],[.3,1.5],[.5,1],[.64,3],[.66,4.5],[.9,4],[1,6.28]]
+        fitness(f,g)
+        generations=[]
+        done = False
+        count = 0
+        gen = Generator(4,4)
+        goal = Program(gen.genPolygon(5))
+        #if not goal.poly.convex:
+        #    x-=1
+        #    continue
+        print("\n6-Sided",x+1)
+        #print("Goal is")
+        #print(goal.toString())
+        print(goal.poly.turnFunc)
 
-    testSize=5
-    num = 0
-    generations=[]
-    done = False
-    count = 0
-    gen = Generator(4,4)
-    goal = Program(gen.genPolygon(4))
-    print("Goal is")
-    print(goal.toString())
-    goal.execute(500)
-    init = initPop(goal)
+        goal.execute(x)
+        init = initPop(goal,count)
     #print(type(init))
-    generations.append(init)
-    while not done:
-        init = geneticAlgorithm(goal,init)
-        if init.progList[0].fitness < 0.000001:
-            done = True
         generations.append(init)
+        best = 2
+        while not done:
+            init = geneticAlgorithm(goal,init,count+1)
+            if init.progList[0].fitness < 0.1:
+                done = True
+            if init.progList[0].fitness < best:
+                print(init.progList[0].fitness)
+                init.progList[0].execute(x+init.progList[0].fitness)
+                generations.append(init)
+                best = init.progList[0].fitness
+            count+=1
 
+        print("Generation \t Fitness")
+        for y in range(0,len(generations)):
+            print(generations[y].num,"\t\t\t",generations[y].progList[0].fitness)
+            #print(generations[x].progList[0].turnFunc)
+            #print(generations[x].progList[0].toString(),"\n")
+            #best = generations[x].progList[0].fitness
+            #generations[x].progList[0].execute(y+100)
 
-    best = 2
-    for x in range(0,len(generations)):
-        if generations[x].progList[0].fitness < best:
-            print("Generation",x)
-            print(generations[x].progList[0].fitness)
-            best = generations[x].progList[0].fitness
-            generations[x].progList[0].execute(500+x)
-
-
-
-  #for x in range(0,500):
-    #    progList = []
-    #    for y in range(0,100):
-    #        gen = Generator(4,4)
-    #        prog = Program(gen.genPolygon(random.randint(3,8)))
-    ##        fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
-     #       prog.fitness = fit
-     #       progList.append(prog)
-     #   generations.append(Generation(progList))
-    #geneticAlgorithm(generations[0])
-
-
-    #t0 = time.clock()
-    #while not done:
-    #   gen = Generator(4,4)
-    #    prog = Program(gen.genPolygon(random.randint(3,8)))
-    #    fit = turningDistance(goal.poly.areaUnderFunc,prog.poly.areaUnderFunc)
-    #    prog.fitness = fit
-    #    if  fit < .0000001:
-    #        print("\nFound it",count)
-    #        print(prog.toString())
-    #        prog.execute(1000)
-    #        done = True
-    #    elif fit < .001:
-    #        progList.append(prog)
-    #    count +=1
-    #    if count % 1000000 == 0:
-    #        print("Still churning along")
-    #print((time.clock()-t0)/count)
-
-
-    #print("Fitness hype")
-    #ct = 1000
-    #for x in range(0,len(progList)):
-    #    progList[x].execute(ct)
-    #    ct+=1
-
-    #for x in range(1,179):
-    #    gen = Generator(4,4)
-    #    prog = Program(gen.genTest(x))
-    #    t = prog.parse.parseTriangle()
-    #    turnList.append(t)
-
-    #for x in range(0,178):
-    #    turningDistance(goal,turnList[x])
-
-    #for x in range(0,testSize):
-    #    print("Program " +str(x+1)+"\n")
-    #    gen = Generator(4,4)
-    #    prog = Program(gen.genPolygon(6))
-    #    print(prog.turnFunc)
-        #print(prog.poly.reorderAngles())
-        #triTest = Polygon(prog.coords())
-        #triTest.calcAngles()
-        #triTest.coordDistance()
-        #triTest.turningFunction()
-    #    prog.execute(x)
-    #    print (prog.toString()+"\n")
-        #parse = Parser(prog.expressions())
-        #prog.coords()
-        #prog.execute()
-        #t = parse.parseTriangle()
-        #turnList.append(t)
-    #    print("\n******************************************\n")
-
-    #for x in range(0,testSize):
-    #    for y in range(0,testSize):
-    #        print("Turning distance from func " + str(x+1) + " to func "+ (str(y+1)))
-    #        turningDistance(turnList[x],turnList[y])
 
 if __name__ == "__main__":
     main()
