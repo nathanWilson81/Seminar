@@ -3,11 +3,18 @@ import math
 import time
 import operator
 import itertools
+import tkinter as tk
+import time
+from threading import Thread
 from multiprocessing import Pool
 #import TkGui
 from turtle import *
 #import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageTk
+
+GUIImageList=[]
+GUITextList=[]
+GUIFinished = False
 
 class Program(object):
     """ Chromosomal representation for the Genetic Algorithm
@@ -61,11 +68,15 @@ class Program(object):
 
     def savePIL(self,i):
         chain = list(itertools.chain(*self.poly.vertexList))
-        print(chain)
-        img = Image.new('RGB', (300,300),(255,255,255,0))
+        #print(chain)
+        newChain = [x+250 for x in chain]
+        #print(newChain)
+        img = Image.new('RGB', (500,500),(255,255,255,0))
         draw = ImageDraw.Draw(img)
-        draw.polygon(chain,outline=(255,0,0))
-        img.show()
+        draw.polygon(newChain,outline=(0,0,0))
+        out = img.transpose(Image.FLIP_TOP_BOTTOM)
+        out.thumbnail((200,200),Image.ANTIALIAS)
+        return out
 
 
     def coords(self):
@@ -339,7 +350,7 @@ class Polygon:
         func.append([0.0,0.0])
         for i in range(len(angList)):
             try: func.append([distList[i],yVec[i]])
-            except IndexError: func.append([0.0],[0.0])
+            except IndexError: func.append([0.0,0.0])
         self.turnFunc = func
         #print(self.turnFunc)
         return func
@@ -445,8 +456,8 @@ class Generator:
         ########## CONSTANTS FOR GENERATION ####################
         self.MAX_DIRECTION_COMMAND_VALUE = 150
         self.MIN_DIRECTION_COMMAND_VALUE = 50
-        self.MAX_ANGLE_COMMAND_VALUE = 110
-        self.MIN_ANGLE_COMMAND_VALUE = 50
+        self.MAX_ANGLE_COMMAND_VALUE = 179
+        self.MIN_ANGLE_COMMAND_VALUE = -179
         ########## INITIALIZATION ARGUMENTS ####################
         self.maxComCount = maxCommands
         self.minComCount = minCommands
@@ -614,6 +625,88 @@ class interiorRectangle:
         #print(dx*dy)
         self.area = dx*dy
 
+class evolutionThread(Thread):
+    def __init__(self,goal,init):
+        Thread.__init__(self)
+        self.goal = goal
+        self.init = init
+    def run(self):
+        evolve(self.goal,self.init)
+
+class GUI:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.wm_title("Image Evolution")
+        self.root.config(background = "#FFFFFF")
+        self.buildUI()
+
+    def run(self):
+        self.updateUI()
+        self.root.mainloop()
+
+    def updateUI(self):
+        try:
+            self.root.update()
+            time.sleep(1)
+            self.buildUI()
+        except KeyboardInterrupt:
+            pass
+
+    def buildUI(self):
+        display = tk.Frame(self.root,width=600,height=600)
+        display.grid(row=0, column=1, padx=0, pady=0,sticky=tk.N+tk.S)
+
+        goalFrame=tk.Frame(display,width=200,height=200)
+        goalFrame.grid(row=0,column=1,padx=0,pady=0)
+
+        bestFrame=tk.Frame(display,width=200,height=200)
+        bestFrame.grid(row=1,column=0,padx=0,pady=0)
+
+        secondBestFrame=tk.Frame(display,width=200,height=200)
+        secondBestFrame.grid(row=1,column=1,padx=0,pady=0)
+
+        thirdBestFrame=tk.Frame(display,width=200,height=200)
+        thirdBestFrame.grid(row=1,column=2,padx=0,pady=0)
+
+        goalText = tk.Label(goalFrame,text="Goal Image",font=("Serif",10))
+        BestText = tk.Label(bestFrame,text="Current Best: "+str(GUITextList[0])[:7],font=("Serif",10))
+        secondBestText = tk.Label(secondBestFrame,text="Current Second: "+str(GUITextList[1])[:7],font=("Serif",10))
+        thirdBestText = tk.Label(thirdBestFrame,text="Current Third: "+str(GUITextList[2])[:7],font=("Serif",10))
+        generationText = tk.Label(display,text="Generations: "+str(GUITextList[3]),font=("Serif",10))
+
+        generationText.grid(row=2,column=1)
+
+        goalIm = GUIImageList[0]
+        resizedGoal = goalIm.resize((200,200),Image.ANTIALIAS)
+        goal = ImageTk.PhotoImage(resizedGoal)
+        goalImage = tk.Label(goalFrame,image=goal)
+        goalImage.grid(row=1,column=1,padx=0,pady=0)
+        goalText.grid(row=0,column=1,padx=0,pady=0)
+
+        bestIm = GUIImageList[1]
+        resizedBest = bestIm.resize((200,200),Image.ANTIALIAS)
+        best = ImageTk.PhotoImage(resizedBest)
+        bestImage = tk.Label(bestFrame,image=best)
+        bestImage.grid(row=1,column=1,padx=0,pady=0)
+        BestText.grid(row=0,column=1,padx=0,pady=0)
+
+        secondBestIm = GUIImageList[2]
+        resizedBest = secondBestIm.resize((200,200),Image.ANTIALIAS)
+        secondBest = ImageTk.PhotoImage(resizedBest)
+        bestImage = tk.Label(secondBestFrame,image=secondBest)
+        bestImage.grid(row=1,column=1,padx=0,pady=0)
+        secondBestText.grid(row=0,column=1,padx=0,pady=0)
+
+        thirdBestIm = GUIImageList[3]
+        resizedBest = thirdBestIm.resize((200,200),Image.ANTIALIAS)
+        thirdBest = ImageTk.PhotoImage(resizedBest)
+        bestImage = tk.Label(thirdBestFrame,image=thirdBest)
+        bestImage.grid(row=1,column=1,padx=0,pady=0)
+        thirdBestText.grid(row=0,column=1,padx=0,pady=0)
+        self.updateUI()
+
+
+
 def normalize(arg):
     return [float(i)/max(arg) for i in arg]
 
@@ -628,9 +721,11 @@ def fitness(goal, current):
     x = 0
     y = 0
     count =0
+    #print("Goal and current",n,m)
     while not done:
-        if x+y == len(totalFunc)-3:
+        if count == len(totalFunc)-3 or y==m:
             done = True
+            break
         if current[y][0] <= goal[x][0]:
             #print("Less than",current[y],goal[x])
             dx = abs(current[y][0]-current[y-1][0])
@@ -800,43 +895,55 @@ def initPop(goal,num):
 def fitTest(goal,current):
     return turningDistance(goal.poly.areaUnderFunc,current.poly.areaUnderFunc)
 
-def main():
-    for x in range(0,5):
+def updateGUI(init,count):
+    for x in range(1,4):
+        GUIImageList[x]=init.progList[x-1].savePIL(x)
+        GUITextList[x-1]=init.progList[x-1].fitness
+    GUITextList[3] = count
+
+def evolve(goal,init):
+    for x in range(0,1):
         #print("Test",x+1,"\n")
         testSize=5
         num = 0
-        f = [[0.0,0.0],[.33,1.25],[.7,3.14],[1,6.28]]
-        g = [[0.0,0.0],[.25,1],[.3,1.5],[.5,1],[.64,3],[.66,4.5],[.9,4],[1,6.28]]
-        fitness(f,g)
+        #f = [[0.0,0.0],[.33,1.25],[.7,3.14],[1,6.28]]
+        #g = [[0.0,0.0],[.25,1],[.3,1.5],[.5,1],[.64,3],[.66,4.5],[.9,4],[1,6.28]]
+        #fitness(f,g)
         generations=[]
         done = False
-        count = 0
-        gen = Generator(4,4)
-        goal = Program(gen.genPolygon(5))
-        #if not goal.poly.convex:
-        #    x-=1
-        #    continue
-        print("\n6-Sided",x+1)
-        #print("Goal is")
-        #print(goal.toString())
+        count = 1
+        #gen = Generator(4,4)
+        #goal = Program(gen.genPolygon(5))
+        #print("\n6-Sided",x+1)
         print(goal.poly.turnFunc)
 
-        goal.execute(x)
-        init = initPop(goal,count)
+        #GUIImageList.append(goal.savePIL(x))
+        #goal.execute(x)
+        #init = initPop(goal,count)
+        #for x in range(0,3):
+        #    GUIImageList.append(init.progList[x].savePIL(x))
+        #    GUITextList.append(init.progList[x].fitness)
+        #GUITextList.append(0)
+        #GUI()
     #print(type(init))
         generations.append(init)
         best = 2
         while not done:
             init = geneticAlgorithm(goal,init,count+1)
+            if count%10==0:
+                updateGUI(init,count)
             if count%500==0:
                 print("Count and current best:",count,init.progList[0].fitness)
             if init.progList[0].fitness < 0.1 or num >=2000:
+                updateGUI(init,count)
                 done = True
+                GUIFinished = True
             if init.progList[0].fitness < best:
                 print(init.progList[0].fitness)
-                init.progList[0].execute(x+init.progList[0].fitness)
+                #init.progList[0].execute(x+init.progList[0].fitness)
                 generations.append(init)
                 best = init.progList[0].fitness
+                updateGUI(init,count)
                 num=0
             count+=1
             num+=1
@@ -844,10 +951,23 @@ def main():
         print("Generation \t Fitness")
         for y in range(0,len(generations)):
             print(generations[y].num,"\t\t\t",generations[y].progList[0].fitness)
-            #print(generations[x].progList[0].turnFunc)
-            #print(generations[x].progList[0].toString(),"\n")
-            #best = generations[x].progList[0].fitness
-            #generations[x].progList[0].execute(y+100)
+
+def main():
+    gen = Generator(4,4)
+    goal = Program(gen.genPolygon(5))
+    print("\n6-Sided")
+    print(goal.poly.turnFunc)
+
+    GUIImageList.append(goal.savePIL(4))
+    #goal.execute(x)
+    init = initPop(goal,0)
+    for x in range(0,3):
+        GUIImageList.append(init.progList[x].savePIL(x))
+        GUITextList.append(init.progList[x].fitness)
+    GUITextList.append(0)
+    evo = evolutionThread(goal,init)
+    evo.start()
+    GUI().run()
 
 
 if __name__ == "__main__":
